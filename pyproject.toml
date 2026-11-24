@@ -1,0 +1,19 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "gridengine"
+version = "0.1.0"
+description = "Physics core of Certified Interconnection: Power Grid Model batch power flows, seasons, contingencies, fault currents"
+requires-python = ">=3.10"
+dependencies = ["numpy", "power-grid-model>=1.13"]
+
+[project.optional-dependencies]
+check = ["pandapower>=3.0"]
+
+[tool.setuptools.packages.find]
+include = ["gridengine*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
