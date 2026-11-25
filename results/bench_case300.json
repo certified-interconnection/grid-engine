@@ -1,0 +1,110 @@
+{
+ "case": "case300",
+ "build_seconds": 2.333612371000015,
+ "ratings": "synthetic: worst N-1 flow / 0.7 for 411 unrated branches",
+ "n_branches": 411,
+ "seasons": {
+  "summer_peak": {
+   "P1": {
+    "n": 322,
+    "secure": 289,
+    "converged": 306,
+    "seconds": 0.896026073999991,
+    "ms_per_case": 2.7826896708074256,
+    "overloaded_cases": 0,
+    "low_voltage_cases": 16,
+    "high_voltage_cases": 2
+   },
+   "P7": {
+    "n": 1,
+    "secure": 0,
+    "converged": 1,
+    "seconds": 0.0045813460000090345,
+    "ms_per_case": 4.5813460000090345,
+    "overloaded_cases": 0,
+    "low_voltage_cases": 1,
+    "high_voltage_cases": 0
+   },
+   "N2": {
+    "n": 300,
+    "secure": 229,
+    "converged": 299,
+    "seconds": 0.863163156999974,
+    "ms_per_case": 2.877210523333247,
+    "overloaded_cases": 37,
+    "low_voltage_cases": 34,
+    "high_voltage_cases": 3
+   }
+  },
+  "winter_peak": {
+   "P1": {
+    "n": 322,
+    "secure": 296,
+    "converged": 312,
+    "seconds": 0.8617773349999993,
+    "ms_per_case": 2.6763271273291904,
+    "overloaded_cases": 4,
+    "low_voltage_cases": 15,
+    "high_voltage_cases": 3
+   },
+   "P7": {
+    "n": 1,
+    "secure": 0,
+    "converged": 1,
+    "seconds": 0.004610675999998648,
+    "ms_per_case": 4.610675999998648,
+    "overloaded_cases": 0,
+    "low_voltage_cases": 1,
+    "high_voltage_cases": 0
+   },
+   "N2": {
+    "n": 300,
+    "secure": 244,
+    "converged": 299,
+    "seconds": 0.8386595869999951,
+    "ms_per_case": 2.7955319566666503,
+    "overloaded_cases": 31,
+    "low_voltage_cases": 31,
+    "high_voltage_cases": 6
+   }
+  },
+  "light_load": {
+   "P1": {
+    "n": 322,
+    "secure": 308,
+    "converged": 322,
+    "seconds": 0.8477517320000061,
+    "ms_per_case": 2.632769354037286,
+    "overloaded_cases": 8,
+    "low_voltage_cases": 7,
+    "high_voltage_cases": 4
+   },
+   "P7": {
+    "n": 1,
+    "secure": 1,
+    "converged": 1,
+    "seconds": 0.004414546999981894,
+    "ms_per_case": 4.414546999981894,
+    "overloaded_cases": 0,
+    "low_voltage_cases": 0,
+    "high_voltage_cases": 0
+   },
+   "N2": {
+    "n": 300,
+    "secure": 272,
+    "converged": 300,
+    "seconds": 0.7685603070000013,
+    "ms_per_case": 2.5618676900000046,
+    "overloaded_cases": 19,
+    "low_voltage_cases": 16,
+    "high_voltage_cases": 6
+   }
+  }
+ },
+ "pandapower_loop": {
+  "n": 30,
+  "seconds": 4.126488588000001,
+  "ms_per_case": 137.54967526666633,
+  "note": "pandapower without numba; Newton from flat start, no Q limits"
+ }
+}
