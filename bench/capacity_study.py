@@ -72,7 +72,7 @@ def main():
     E = engines(); nb = E["base"].case["bus"].shape[0]
     total_load = E["base"].case["bus"][:, 2].sum()
     mw_max = round(0.15 * total_load, -1)
-    out = dict(case=CASE, n_bus=nb, total_load_mw=float(total_load), map_cap_mw=mw_max, ratings=E["base"].ratings,
+    out = dict(case=CASE, n_bus=nb, total_load_mw=float(total_load), map_cap_mw=mw_max, ratings=E["base"].ratings, q_limits=E["base"].q_limits,
                balance="new generation displaces existing generators pro rata; new load served pro rata")
     jobs = [(s, b, k, mw_max) for s in SEASONS for k in ("gen", "load") for b in range(nb)]
     with mp.get_context("spawn").Pool(NPROC) as p:
