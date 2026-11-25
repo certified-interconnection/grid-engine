@@ -19,6 +19,7 @@ NPP = int(sys.argv[2]) if len(sys.argv) > 2 else 100000
 out = dict(case=CASE)
 base = Engine(load_case(CASE))
 out["ratings"] = base.ratings
+out["q_limits"] = base.q_limits
 sets = dict(P1=p1(base.branches), P7=p7(base.branches), N2=n2_sample(base.branches, n=300, seed=0))
 out["set_sizes"] = {k: len(v) for k, v in sets.items()}
 

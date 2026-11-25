@@ -20,7 +20,7 @@ V_BAND = (0.90, 1.10)
 U_NODE = 100e3   # every node at 100 kV; impedances converted on a 100 MVA / 100 ohm base (as in PGM's own IEEE cases)
 
 
-def _convert(case):
+def _convert(case, q_limits=False):  # q_limits handled by Engine.run (outer loop), not here
     """MATPOWER arrays -> Power Grid Model input. Branches become generic_branch (tap ratio, phase shift and
     RATE_A kept), PV generators sym_gen + voltage_regulator, the slack a stiff source, fixed shunts as shunt.
     All nodes at 100 kV on a 100 MVA base, as in Power Grid Model's own IEEE validation cases."""
@@ -52,6 +52,7 @@ def _convert(case):
         sg["id"][k] = 300000 + b; sg["node"][k] = b; sg["status"][k] = 1; sg["type"][k] = 0
         sg["p_specified"][k] = rows[:, 1].sum() * 1e6; sg["q_specified"][k] = 0.0
         vr["id"][k] = 400000 + b; vr["regulated_object"][k] = 300000 + b; vr["status"][k] = 1; vr["u_ref"][k] = rows[0, 5]
+
     src = initialize_array(DatasetType.input, ComponentType.source, 1)
     src["id"] = 600000; src["node"] = ref; src["status"] = 1
     src["u_ref"] = g_on[g_on[:, 0] == ref][0, 5] if (g_on[:, 0] == ref).any() else bus[ref, 7]
@@ -69,11 +70,23 @@ def _convert(case):
 
 
 class Engine:
-    def __init__(self, case, v_band=V_BAND):
-        """case: dict from load_case (optionally passed through apply_season)."""
+    def __init__(self, case, v_band=V_BAND, q_limits=None):
+        """case: dict from load_case (optionally passed through apply_season).
+        q_limits: enforce generator reactive power limits (MATPOWER QMIN/QMAX, summed per bus) with MATPOWER's outer
+        loop: solve, fix every regulated generator beyond a limit at that limit (its regulator off), repeat until none
+        is violated. Done per batch scenario. Power Grid Model 1.13's built-in regulator limits are not used: on IEEE 118
+        they held three generators at QMIN with the voltage below setpoint, and IEEE 300 did not converge.
+        Default: off, unless the environment variable GE_QLIM=1 is set (the study scripts record which was used)."""
+        import os
         self.case = case
-        self.input = _convert(case)
+        self.q_limits = (os.environ.get("GE_QLIM") == "1") if q_limits is None else bool(q_limits)
+        self.input = _convert(case, q_limits)
         self.model = PowerGridModel(self.input)
+        if q_limits and "sym_gen" in self.input:
+            g_on = case["gen"][case["gen"][:, 7] > 0]
+            nodes = self.input["sym_gen"]["node"]
+            self.qmax = np.array([g_on[g_on[:, 0] == b, 3].sum() for b in nodes]) * 1e6
+            self.qmin = np.array([g_on[g_on[:, 0] == b, 4].sum() for b in nodes]) * 1e6
         self.branches = branch_table(self.input)
         self.v_band = v_band
         self.init = CalculationInitialization.flat   # PGM's default (linear) start diverges on some outage cases
@@ -107,10 +120,49 @@ class Engine:
         self.ratings = f"synthetic: worst N-1 flow / {margin} for {int(missing.sum())} unrated branches"
 
     # ------------------------------------------------------------------ power flow
+    def run(self, model=None, update=None, n=1, init=None, tol=1e-8, max_iterations=30):
+        """Batch power flow with this engine's options. Returns (output, failed mask). With q_limits, MATPOWER's
+        outer loop runs per scenario (a generator once fixed at a limit stays fixed, as in MATPOWER)."""
+        model = self.model if model is None else model
+        kw = dict(calculation_method=CalculationMethod.newton_raphson, error_tolerance=tol, max_iterations=max_iterations,
+                  continue_on_batch_error=True, calculation_initialization=self.init if init is None else init)
+        update = dict(update or {})
+        if not (self.q_limits and "sym_gen" in self.input):
+            return self._call(model, update, n, kw)
+        ng = len(self.input["sym_gen"])
+        pv = np.ones((n, ng), bool); qf = np.zeros((n, ng))
+        base_sg = update.get("sym_gen")
+        for _ in range(40):
+            vr = initialize_array(DatasetType.update, ComponentType.voltage_regulator, (n, ng))
+            vr["id"] = self.input["voltage_regulator"]["id"][None, :]; vr["status"] = pv.astype(np.int8)
+            sg = initialize_array(DatasetType.update, ComponentType.sym_gen, (n, ng)) if base_sg is None else base_sg.copy()
+            sg["id"] = self.input["sym_gen"]["id"][None, :]
+            sg["q_specified"] = np.where(pv, 0.0, qf)
+            update["voltage_regulator"] = vr; update["sym_gen"] = sg
+            out, failed = self._call(model, update, n, kw)
+            q = np.nan_to_num(out["sym_gen"]["q"], nan=0.0)
+            viol = pv & ((q > self.qmax[None, :] + 1e3) | (q < self.qmin[None, :] - 1e3)) & ~failed[:, None]
+            if not viol.any():
+                return out, failed
+            qf = np.where(viol, np.where(q > self.qmax[None, :], self.qmax[None, :], self.qmin[None, :]), qf)
+            pv &= ~viol
+        return out, failed | viol.any(axis=1)
+
+    def _call(self, model, update, n, kw):
+        failed = np.zeros(n, dtype=bool)
+        if not update:
+            out = model.calculate_power_flow(**{k: v for k, v in kw.items() if k != "continue_on_batch_error"})
+            return {c: v[None, ...] for c, v in out.items()}, failed
+        try:
+            out = model.calculate_power_flow(update_data=update, **kw)
+        except PowerGridBatchError as e:
+            out = e.output
+            failed[np.asarray(e.failed_scenarios, dtype=int)] = True
+        return out, failed
+
     def base_case(self):
-        out = self.model.calculate_power_flow(calculation_method=CalculationMethod.newton_raphson, error_tolerance=1e-8,
-                                              max_iterations=30, calculation_initialization=self.init)
-        return self._summarize(out, single=True)
+        out, failed = self.run()
+        return self._summarize(out, single=False, failed=failed)
 
     def contingency_analysis(self, contingencies, chunk=500):
         """contingencies: list of tuples of indices into self.branches. Returns per-contingency arrays."""
@@ -143,17 +195,7 @@ class Engine:
 
     def _batch(self, conts):
         n = len(conts)
-        update = self._update(conts)
-        failed = np.zeros(n, dtype=bool)
-        try:
-            out = self.model.calculate_power_flow(update_data=update, calculation_method=CalculationMethod.newton_raphson,
-                                                  error_tolerance=1e-8, max_iterations=30, continue_on_batch_error=True,
-                                                  calculation_initialization=self.init)
-        except PowerGridBatchError as e:
-            out = e.output if hasattr(e, "output") else None
-            failed[np.asarray(e.failed_scenarios, dtype=int)] = True
-            if out is None:
-                raise
+        out, failed = self.run(update=self._update(conts), n=n)
         return self._summarize(out, single=False, failed=failed)
 
     def _summarize(self, out, single, failed=None):
