@@ -11,6 +11,8 @@ import numpy as np
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), ".."))
 from gridengine import Engine, load_case, apply_season, SEASONS, p1, p7, n2_sample
 from pypower.api import runpf, ppoption
+from gridengine.qlim_ref import solve_qlim
+QLIM = os.environ.get("GE_QLIM") == "1"   # then the reference is MATPOWER's reactive-limit outer loop (qlim_ref)
 
 CASE = sys.argv[1]
 OPT = ppoption(VERBOSE=0, OUT_ALL=0, PF_TOL=1e-10, ENFORCE_Q_LIMS=0, PF_MAX_IT=30)
@@ -24,7 +26,7 @@ def q(x):
     return {p: float(np.quantile(x, p)) for p in (0.5, 0.9, 0.99, 1.0)} if len(x) else None
 
 
-out = dict(case=CASE, ratings=base.ratings, seasons={})
+out = dict(case=CASE, ratings=base.ratings, q_limits=base.q_limits, seasons={})
 t0 = time.time()
 for season in SEASONS:
     eng = Engine(apply_season(base.case, season))
@@ -35,12 +37,10 @@ for season in SEASONS:
         if not conts:
             continue
         if name == "base":
-            o = eng.model.calculate_power_flow(calculation_initialization=eng.init, error_tolerance=1e-10, max_iterations=30)
-            U = o["node"]["u_pu"][None, :]; A = o["node"]["u_angle"][None, :]
+            o, _ = eng.run(tol=1e-10)
         else:
-            o = eng.model.calculate_power_flow(update_data=eng._update(conts), calculation_initialization=eng.init,
-                                               error_tolerance=1e-10, max_iterations=30, continue_on_batch_error=True)
-            U = o["node"]["u_pu"]; A = o["node"]["u_angle"]
+            o, _ = eng.run(update=eng._update(conts), n=len(conts), tol=1e-10)
+        U = o["node"]["u_pu"]; A = o["node"]["u_angle"]
         dv, da, both, pgm_only, pyp_only, neither = [], [], 0, 0, 0, 0
         for s, cont in enumerate(conts):
             ppc = dict(version="2", baseMVA=c["baseMVA"], bus=c["bus"].copy(), gen=c["gen"].copy(), branch=c["branch"].copy())
@@ -48,15 +48,22 @@ for season in SEASONS:
             for bi in cont:
                 ppc["branch"][on[bi], 10] = 0
             try:
-                r, ok = runpf(ppc, OPT)
+                if QLIM:
+                    vref, ok = solve_qlim(c, out_branches=[on[bi] for bi in cont])
+                    r = None
+                else:
+                    r, ok = runpf(ppc, OPT)
             except Exception:
                 ok = 0
             u = U[s]
             ok_pgm = bool(np.isfinite(u).all() and (u > 0.3).all())
             if ok and ok_pgm:
                 both += 1
-                dv.append(float(np.abs(r["bus"][:, 7] - u).max()))
-                da.append(float(np.abs(r["bus"][:, 8] - r["bus"][ref, 8] - np.rad2deg(A[s])).max()))
+                if QLIM:
+                    dv.append(float(np.abs(vref - u).max()))
+                else:
+                    dv.append(float(np.abs(r["bus"][:, 7] - u).max()))
+                    da.append(float(np.abs(r["bus"][:, 8] - r["bus"][ref, 8] - np.rad2deg(A[s])).max()))
             elif ok_pgm:
                 pgm_only += 1
             elif ok:
@@ -70,5 +77,5 @@ for season in SEASONS:
               "max dV", out["seasons"][season][name]["max_dv"] and out["seasons"][season][name]["max_dv"][1.0], flush=True)
 out["seconds"] = time.time() - t0
 os.makedirs("results", exist_ok=True)
-json.dump(out, open(f"results/validate_pypower_{CASE}.json", "w"), indent=1)
+json.dump(out, open(f"results/validate_pypower_{CASE}{'_qlim' if QLIM else ''}.json", "w"), indent=1)
 print("wrote")
