@@ -80,3 +80,37 @@ def test_partial_relaxes_and_rechecks(study):
     _check_option(study, pt)
     assert study.recheck_partial(pt)
     assert all(0.0 <= x["t"] <= 1.0 for x in pt["per_request"])
+
+
+# A second small cluster (loads at buses 104, 105, 106, from Step 2's cluster 1) where nothing fits as a firm request
+# but post-contingency curtailment admits a load, so the option path (option_used) and its re-check are exercised.
+REQ2 = [dict(bus=104, mw=70.3, kind="load"), dict(bus=105, mw=90.2, kind="load"), dict(bus=106, mw=172.0, kind="load")]
+
+
+@pytest.fixture(scope="module")
+def study2(eng):
+    return OptionsStudy(eng, REQ2, p1(eng.branches))
+
+
+@pytest.mark.parametrize("keep", [0.5, 0.0])
+def test_flexible_gain_is_real_and_rechecks(study2, keep):
+    rec = study2.best_subset_flexible(REQ2, study2.conts, [0, 1, 2], keep)
+    assert study2.plain["mw"] == 0.0
+    assert rec["option_used"] and rec["gain_mw"] > 0
+    assert study2.recheck_flexible(rec, REQ2, study2.conts)
+    assert not study2.cs.secure(REQ2, study2._vec(rec["admitted"], 3), study2.conts)[0]
+
+
+def test_two_code_paths_agree(study2):
+    """The search's per-case evaluator and the re-check (CapacityStudy's own code path) give the same verdict."""
+    keepvec = np.array([0.5, 0.5, 0.5])
+    for a in ([1, 0, 0], [0, 1, 0], [1, 1, 0]):
+        a = np.array(a, float)
+        fast = bool(study2._ok_rows(study2.cs, REQ2, a, keepvec, study2.conts).all())
+        assert fast == study2.secure_flexible(REQ2, a, study2.conts, keepvec)
+    k = next(i for i in range(len(study2.eng.branches)) if not study2._islanding(i, study2.conts))
+    cs2 = study2.switched(k)
+    for a in ([1, 0, 0], [0, 1, 0]):
+        a = np.array(a, float)
+        fast = bool(study2._ok_rows(cs2, REQ2, a, np.ones(3), study2.conts).all())
+        assert fast == study2.secure_switched(k, a)
