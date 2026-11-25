@@ -6,6 +6,8 @@
 
 90 clusters; 10 admit every request (no upgrade); 80 leave requests out. Best subsets re-checked secure: 90 of 90.
 
+With every request at full size, the requests overload a median of 7.5 distinct branches (min 1, max 40) and push a median of 0 buses out of band (max 2) across all failing cases; 4 clusters have at least one diverged case. One binding element per row below is therefore a first step, not the full upgrade set.
+
 ### Upgrade class, binding case when the rest is added on top of the best subset
 
 | upgrade class | clusters |
@@ -27,14 +29,14 @@
 | season | seed | rest MW (gen / load) | binding element | upgrade | cost $M (low / central / high) | $M per mile (low / central / high) | time yr (low-high) | LBNL complete $M | LBNL active $M |
 |---|---|---|---|---|---|---|---|---|---|
 | summer_peak | 0 | 283 / 0 | line 16-30, 78 MVA, needs 150 | reconductor line | n/a | 0.34 / 0.34 / 0.34 | 1.8-4.9 | 0.0 / 4.6 / 20.1 | 4.2 / 19.2 / 46.6 |
-| summer_peak | 1 | 0 / 454 | line 99-102, 240 MVA, needs 651 | new parallel line | n/a | 3.20 / 3.60 / 4.20 | 1.8-4.9 | 0.0 / 0.0 / 0.0 | 0.0 / 0.0 / 0.0 |
+| summer_peak | 1 | 0 / 454 | line 99-102, 240 MVA, needs 651 | new parallel line | n/a | 3.20 / 3.60 / 4.20 | 1.8-4.9 | n/a (no generation left out) | n/a (no generation left out) |
 | summer_peak | 2 | 132 / 101 | line 70-72, 21 MVA, needs 50 | reconductor line | n/a | 0.34 / 0.34 / 0.34 | 1.8-4.9 | 0.0 / 2.2 / 9.3 | 1.9 / 8.9 / 21.7 |
 | summer_peak | 3 | 356 / 72 | line 64-67, 131 MVA, needs 167 | reconductor line | n/a | 0.54 / 0.54 / 0.54 | 1.8-4.9 | 0.0 / 5.8 / 25.2 | 5.2 / 24.2 / 58.5 |
 | summer_peak | 4 | 64 / 117 | transformer 85-86, 22 MVA, needs 44 | add transformer | 0.1 / n/a / 0.1 | n/a | 1.8-4.9 (+ lead 1.5-4.0) | 0.0 / 1.0 / 4.5 | 0.9 / 4.3 / 10.5 |
 | summer_peak | 5 | 289 / 276 | line 53-55, 64 MVA, needs 195 | reconductor line | n/a | 0.34 / 0.34 / 0.34 | 1.8-4.9 | 0.0 / 4.7 / 20.4 | 4.2 / 19.6 / 47.5 |
 | summer_peak | 6 | 296 / 0 | line 64-67, 131 MVA, needs 237 | reconductor line | n/a | 0.54 / 0.54 / 0.54 | 1.8-4.9 | 0.0 / 4.9 / 21.0 | 4.4 / 20.1 / 48.7 |
 | summer_peak | 7 | 675 / 0 | line 29-37, 229 MVA, needs 411 | reconductor line | n/a | 0.54 / 0.54 / 0.54 | 1.8-4.9 | 0.0 / 11.1 / 47.8 | 9.9 / 45.9 / 111.0 |
-| summer_peak | 8 | 0 / 86 | line 39-40, 55 MVA, needs 61 | reconductor line | n/a | 0.34 / 0.34 / 0.34 | 1.8-4.9 | 0.0 / 0.0 / 0.0 | 0.0 / 0.0 / 0.0 |
+| summer_peak | 8 | 0 / 86 | line 39-40, 55 MVA, needs 61 | reconductor line | n/a | 0.34 / 0.34 / 0.34 | 1.8-4.9 | n/a (no generation left out) | n/a (no generation left out) |
 | summer_peak | 9 | 466 / 81 | line 81-82, 138 MVA, needs 333 | reconductor line | n/a | 0.34 / 0.34 / 0.34 | 1.8-4.9 | 0.0 / 7.6 / 33.0 | 6.9 / 31.7 / 76.7 |
 | summer_peak | 10 | 421 / 127 | line 76-81, 51 MVA, needs 104 | reconductor line | n/a | 0.34 / 0.34 / 0.34 | 1.8-4.9 | 0.0 / 6.9 / 29.8 | 6.2 / 28.6 / 69.3 |
 | summer_peak | 11 | 321 / 82 | line 38-39, 85 MVA, needs 118 | reconductor line | n/a | 0.34 / 0.34 / 0.34 | 1.8-4.9 | 0.0 / 5.3 / 22.7 | 4.7 / 21.8 / 52.7 |
@@ -54,17 +56,17 @@
 | summer_peak | 25 | 55 / 74 | line 84-85, 27 MVA, needs 37 | reconductor line | n/a | 0.34 / 0.34 / 0.34 | 1.8-4.9 | 0.0 / 0.9 / 3.9 | 0.8 / 3.7 / 9.0 |
 | summer_peak | 26 | 320 / 0 | line 22-23, 102 MVA, needs 159 | reconductor line | n/a | 0.34 / 0.34 / 0.34 | 1.8-4.9 | 0.0 / 5.2 / 22.6 | 4.7 / 21.7 / 52.6 |
 | summer_peak | 27 | 282 / 170 | line 23-71, 53 MVA, needs 145 | reconductor line | n/a | 0.34 / 0.34 / 0.34 | 1.8-4.9 | 0.0 / 4.6 / 19.9 | 4.1 / 19.1 / 46.3 |
-| summer_peak | 28 | 410 / 172 | bus 49 0.900 pu, n/a MVAr | add reactive support | n/a | n/a | 1.8-4.9 | 0.0 / 6.7 / 29.0 | 6.0 / 27.9 / 67.5 |
+| summer_peak | 28 | 410 / 172 | bus 49 0.900 pu, 47.0 MVAr | add reactive support | 0.5 / 4.7 / 9.4 | n/a | 1.8-4.9 | 0.0 / 6.7 / 29.0 | 6.0 / 27.9 / 67.5 |
 | summer_peak | 29 | 180 / 98 | line 79-97, 55 MVA, needs 59 | reconductor line | n/a | 0.34 / 0.34 / 0.34 | 1.8-4.9 | 0.0 / 2.9 / 12.7 | 2.6 / 12.2 / 29.5 |
 | winter_peak | 0 | 255 / 0 | line 16-30, 78 MVA, needs 136 | reconductor line | n/a | 0.34 / 0.34 / 0.34 | 1.8-4.9 | 0.0 / 4.2 / 18.0 | 3.7 / 17.3 / 41.9 |
-| winter_peak | 1 | 0 / 408 | line 99-102, 240 MVA, needs 566 | new parallel line | n/a | 1.60 / 1.80 / 2.10 | 1.8-4.9 | 0.0 / 0.0 / 0.0 | 0.0 / 0.0 / 0.0 |
+| winter_peak | 1 | 0 / 408 | line 99-102, 240 MVA, needs 566 | new parallel line | n/a | 1.60 / 1.80 / 2.10 | 1.8-4.9 | n/a (no generation left out) | n/a (no generation left out) |
 | winter_peak | 2 | 32 / 91 | line 70-71, 68 MVA, needs 85 | reconductor line | n/a | 0.34 / 0.34 / 0.34 | 1.8-4.9 | 0.0 / 0.5 / 2.2 | 0.5 / 2.1 / 5.2 |
 | winter_peak | 3 | 320 / 64 | line 33-42, 63 MVA, needs 197 | reconductor line | n/a | 0.34 / 0.34 / 0.34 | 1.8-4.9 | 0.0 / 5.3 / 22.7 | 4.7 / 21.8 / 52.7 |
 | winter_peak | 4 | 58 / 40 | transformer 85-86, 22 MVA, needs 40 | add transformer | 0.1 / n/a / 0.1 | n/a | 1.8-4.9 (+ lead 1.5-4.0) | 0.0 / 0.9 / 4.1 | 0.8 / 3.9 / 9.5 |
 | winter_peak | 5 | 152 / 248 | line 50-57, 50 MVA, needs 87 | reconductor line | n/a | 0.34 / 0.34 / 0.34 | 1.8-4.9 | 0.0 / 2.5 / 10.7 | 2.2 / 10.3 / 24.9 |
 | winter_peak | 6 | 254 / 0 | line 64-67, 131 MVA, needs 219 | reconductor line | n/a | 0.54 / 0.54 / 0.54 | 1.8-4.9 | 0.0 / 4.2 / 18.0 | 3.7 / 17.3 / 41.8 |
 | winter_peak | 7 | 608 / 0 | line 29-37, 229 MVA, needs 374 | reconductor line | n/a | 0.54 / 0.54 / 0.54 | 1.8-4.9 | 0.0 / 10.0 / 43.0 | 8.9 / 41.3 / 99.9 |
-| winter_peak | 8 | 0 / 47 | line 39-40, 55 MVA, needs 56 | reconductor line | n/a | 0.34 / 0.34 / 0.34 | 1.8-4.9 | 0.0 / 0.0 / 0.0 | 0.0 / 0.0 / 0.0 |
+| winter_peak | 8 | 0 / 47 | line 39-40, 55 MVA, needs 56 | reconductor line | n/a | 0.34 / 0.34 / 0.34 | 1.8-4.9 | n/a (no generation left out) | n/a (no generation left out) |
 | winter_peak | 9 | 420 / 73 | line 76-81, 51 MVA, needs 189 | reconductor line | n/a | 0.34 / 0.34 / 0.34 | 1.8-4.9 | 0.0 / 6.9 / 29.7 | 6.2 / 28.5 / 69.0 |
 | winter_peak | 10 | 208 / 87 | line 95-96, 43 MVA, needs 57 | reconductor line | n/a | 0.34 / 0.34 / 0.34 | 1.8-4.9 | 0.0 / 3.4 / 14.7 | 3.1 / 14.1 / 34.2 |
 | winter_peak | 11 | 289 / 0 | line 34-35, 104 MVA, needs 140 | reconductor line | n/a | 0.34 / 0.34 / 0.34 | 1.8-4.9 | 0.0 / 4.7 / 20.4 | 4.2 / 19.6 / 47.4 |
@@ -83,33 +85,35 @@
 | winter_peak | 25 | 49 / 66 | line 84-85, 27 MVA, needs 34 | reconductor line | n/a | 0.34 / 0.34 / 0.34 | 1.8-4.9 | 0.0 / 0.8 / 3.5 | 0.7 / 3.3 / 8.1 |
 | winter_peak | 26 | 193 / 0 | line 64-67, 131 MVA, needs 184 | reconductor line | n/a | 0.54 / 0.54 / 0.54 | 1.8-4.9 | 0.0 / 3.2 / 13.7 | 2.8 / 13.1 / 31.8 |
 | winter_peak | 27 | 253 / 153 | line 23-71, 53 MVA, needs 129 | reconductor line | n/a | 0.34 / 0.34 / 0.34 | 1.8-4.9 | 0.0 / 4.2 / 17.9 | 3.7 / 17.2 / 41.7 |
-| winter_peak | 28 | 305 / 154 | bus 49 0.899 pu, 35.2 MVAr | add reactive support | 0.4 / 3.6 / 7.0 | n/a | 1.8-4.9 | 0.0 / 5.0 / 21.6 | 4.5 / 20.7 / 50.2 |
+| winter_peak | 28 | 305 / 154 | bus 49 0.899 pu, 37.0 MVAr | add reactive support | 0.4 / 3.7 / 7.4 | n/a | 1.8-4.9 | 0.0 / 5.0 / 21.6 | 4.5 / 20.7 / 50.2 |
 | winter_peak | 29 | 78 / 88 | line 45-47, 46 MVA, needs 61 | reconductor line | n/a | 0.34 / 0.34 / 0.34 | 1.8-4.9 | 0.0 / 1.3 / 5.5 | 1.1 / 5.3 / 12.8 |
 | light_load | 0 | 117 / 0 | line 113-114, 57 MVA, needs 105 | reconductor line | n/a | 0.34 / 0.34 / 0.34 | 1.8-4.9 | 0.0 / 1.9 / 8.3 | 1.7 / 7.9 / 19.2 |
-| light_load | 1 | 0 / 133 | line 102-103, 79 MVA, needs 109 | reconductor line | n/a | 0.34 / 0.34 / 0.34 | 1.8-4.9 | 0.0 / 0.0 / 0.0 | 0.0 / 0.0 / 0.0 |
-| light_load | 2 | 0 / 20 | line 70-72, 21 MVA, needs 30 | reconductor line | n/a | 0.34 / 0.34 / 0.34 | 1.8-4.9 | 0.0 / 0.0 / 0.0 | 0.0 / 0.0 / 0.0 |
+| light_load | 1 | 0 / 133 | line 102-103, 79 MVA, needs 109 | reconductor line | n/a | 0.34 / 0.34 / 0.34 | 1.8-4.9 | n/a (no generation left out) | n/a (no generation left out) |
+| light_load | 2 | 0 / 20 | line 70-72, 21 MVA, needs 30 | reconductor line | n/a | 0.34 / 0.34 / 0.34 | 1.8-4.9 | n/a (no generation left out) | n/a (no generation left out) |
 | light_load | 3 | 130 / 0 | line 33-42, 63 MVA, needs 120 | reconductor line | n/a | 0.34 / 0.34 / 0.34 | 1.8-4.9 | 0.0 / 2.1 / 9.2 | 1.9 / 8.8 / 21.4 |
-| light_load | 4 | 0 / 25 | transformer 85-86, 22 MVA, needs 26 | add transformer | 0.1 / n/a / 0.1 | n/a | 1.8-4.9 (+ lead 1.5-4.0) | 0.0 / 0.0 / 0.0 | 0.0 / 0.0 / 0.0 |
+| light_load | 4 | 0 / 25 | transformer 85-86, 22 MVA, needs 26 | add transformer | 0.1 / n/a / 0.1 | n/a | 1.8-4.9 (+ lead 1.5-4.0) | n/a (no generation left out) | n/a (no generation left out) |
 | light_load | 5 | 93 / 152 | line 53-54, 34 MVA, needs 61 | reconductor line | n/a | 0.34 / 0.34 / 0.34 | 1.8-4.9 | 0.0 / 1.5 / 6.6 | 1.4 / 6.3 / 15.2 |
 | light_load | 6 | 37 / 0 | line 64-67, 131 MVA, needs 145 | reconductor line | n/a | 0.54 / 0.54 / 0.54 | 1.8-4.9 | 0.0 / 0.6 / 2.6 | 0.5 / 2.5 / 6.1 |
 | light_load | 7 | 143 / 0 | line 22-23, 102 MVA, needs 127 | reconductor line | n/a | 0.34 / 0.34 / 0.34 | 1.8-4.9 | 0.0 / 2.3 / 10.1 | 2.1 / 9.7 / 23.5 |
 | light_load | 9 | 256 / 44 | transformer 85-86, 22 MVA, needs 72 | add transformer | 0.3 / n/a / 0.3 | n/a | 1.8-4.9 (+ lead 1.5-4.0) | 0.0 / 4.2 / 18.2 | 3.8 / 17.4 / 42.2 |
-| light_load | 10 | 0 / 53 | line 76-81, 51 MVA, needs 55 | reconductor line | n/a | 0.34 / 0.34 / 0.34 | 1.8-4.9 | 0.0 / 0.0 / 0.0 | 0.0 / 0.0 / 0.0 |
+| light_load | 10 | 0 / 53 | line 76-81, 51 MVA, needs 55 | reconductor line | n/a | 0.34 / 0.34 / 0.34 | 1.8-4.9 | n/a (no generation left out) | n/a (no generation left out) |
 | light_load | 12 | 278 / 222 | line 76-81, 51 MVA, needs 114 | reconductor line | n/a | 0.34 / 0.34 / 0.34 | 1.8-4.9 | 0.0 / 4.6 / 19.7 | 4.1 / 18.9 / 45.7 |
 | light_load | 16 | 134 / 0 | line 64-67, 131 MVA, needs 157 | reconductor line | n/a | 0.54 / 0.54 / 0.54 | 1.8-4.9 | 0.0 / 2.2 / 9.5 | 2.0 / 9.1 / 22.0 |
-| light_load | 17 | 0 / 87 | line 0-2, 103 MVA, needs 132 | reconductor line | n/a | 0.34 / 0.34 / 0.34 | 1.8-4.9 | 0.0 / 0.0 / 0.0 | 0.0 / 0.0 / 0.0 |
+| light_load | 17 | 0 / 87 | line 0-2, 103 MVA, needs 132 | reconductor line | n/a | 0.34 / 0.34 / 0.34 | 1.8-4.9 | n/a (no generation left out) | n/a (no generation left out) |
 | light_load | 18 | 83 / 0 | line 97-99, 50 MVA, needs 70 | reconductor line | n/a | 0.34 / 0.34 / 0.34 | 1.8-4.9 | 0.0 / 1.4 / 5.9 | 1.2 / 5.6 / 13.6 |
-| light_load | 19 | 0 / 107 | line 39-40, 55 MVA, needs 66 | reconductor line | n/a | 0.34 / 0.34 / 0.34 | 1.8-4.9 | 0.0 / 0.0 / 0.0 | 0.0 / 0.0 / 0.0 |
+| light_load | 19 | 0 / 107 | line 39-40, 55 MVA, needs 66 | reconductor line | n/a | 0.34 / 0.34 / 0.34 | 1.8-4.9 | n/a (no generation left out) | n/a (no generation left out) |
 | light_load | 20 | 146 / 0 | line 93-95, 67 MVA, needs 103 | reconductor line | n/a | 0.34 / 0.34 / 0.34 | 1.8-4.9 | 0.0 / 2.4 / 10.3 | 2.1 / 9.9 / 24.0 |
-| light_load | 22 | 0 / 46 | line 98-99, 60 MVA, needs 70 | reconductor line | n/a | 0.34 / 0.34 / 0.34 | 1.8-4.9 | 0.0 / 0.0 / 0.0 | 0.0 / 0.0 / 0.0 |
-| light_load | 23 | 0 / 89 | line 30-31, 99 MVA, needs 147 | reconductor line | n/a | 0.34 / 0.34 / 0.34 | 1.8-4.9 | 0.0 / 0.0 / 0.0 | 0.0 / 0.0 / 0.0 |
+| light_load | 22 | 0 / 46 | line 98-99, 60 MVA, needs 70 | reconductor line | n/a | 0.34 / 0.34 / 0.34 | 1.8-4.9 | n/a (no generation left out) | n/a (no generation left out) |
+| light_load | 23 | 0 / 89 | line 30-31, 99 MVA, needs 147 | reconductor line | n/a | 0.34 / 0.34 / 0.34 | 1.8-4.9 | n/a (no generation left out) | n/a (no generation left out) |
 | light_load | 24 | 131 / 0 | line 64-67, 131 MVA, needs 181 | reconductor line | n/a | 0.54 / 0.54 / 0.54 | 1.8-4.9 | 0.0 / 2.2 / 9.3 | 1.9 / 8.9 / 21.6 |
 | light_load | 27 | 103 / 0 | line 23-71, 53 MVA, needs 150 | reconductor line | n/a | 0.34 / 0.34 / 0.34 | 1.8-4.9 | 0.0 / 1.7 / 7.3 | 1.5 / 7.0 / 17.0 |
-| light_load | 28 | 0 / 52 | bus 49 0.900 pu, n/a MVAr | add reactive support | n/a | n/a | 1.8-4.9 | 0.0 / 0.0 / 0.0 | 0.0 / 0.0 / 0.0 |
+| light_load | 28 | 0 / 52 | bus 49 0.900 pu, 8.0 MVAr | add reactive support | 0.1 / 0.8 / 1.6 | n/a | 1.8-4.9 | n/a (no generation left out) | n/a (no generation left out) |
 
 ## Contingency set P1+P7
 
 90 clusters; 9 admit every request (no upgrade); 81 leave requests out. Best subsets re-checked secure: 90 of 90.
+
+With every request at full size, the requests overload a median of 9 distinct branches (min 1, max 67) and push a median of 0 buses out of band (max 114) across all failing cases; 2 clusters have at least one diverged case. One binding element per row below is therefore a first step, not the full upgrade set.
 
 ### Upgrade class, binding case when the rest is added on top of the best subset
 
@@ -160,7 +164,7 @@
 | summer_peak | 25 | 55 / 74 | line 84-85, 27 MVA, needs 37 | reconductor line | n/a | 0.34 / 0.34 / 0.34 | 1.8-4.9 | 0.0 / 0.9 / 3.9 | 0.8 / 3.7 / 9.0 |
 | summer_peak | 26 | 320 / 0 | line 48-68, 105 MVA, needs 134 | reconductor line | n/a | 0.34 / 0.34 / 0.34 | 1.8-4.9 | 0.0 / 5.2 / 22.6 | 4.7 / 21.7 / 52.6 |
 | summer_peak | 27 | 282 / 170 | line 23-71, 53 MVA, needs 145 | reconductor line | n/a | 0.34 / 0.34 / 0.34 | 1.8-4.9 | 0.0 / 4.6 / 19.9 | 4.1 / 19.1 / 46.3 |
-| summer_peak | 28 | 339 / 272 | bus 49 0.900 pu, n/a MVAr | add reactive support | n/a | n/a | 1.8-4.9 | 0.0 / 5.6 / 24.0 | 5.0 / 23.0 / 55.8 |
+| summer_peak | 28 | 339 / 272 | bus 49 0.900 pu, 47.0 MVAr | add reactive support | 0.5 / 4.7 / 9.4 | n/a | 1.8-4.9 | 0.0 / 5.6 / 24.0 | 5.0 / 23.0 / 55.8 |
 | summer_peak | 29 | 180 / 98 | line 79-97, 55 MVA, needs 59 | reconductor line | n/a | 0.34 / 0.34 / 0.34 | 1.8-4.9 | 0.0 / 2.9 / 12.7 | 2.6 / 12.2 / 29.5 |
 | winter_peak | 0 | 255 / 0 | line 16-30, 78 MVA, needs 136 | reconductor line | n/a | 0.34 / 0.34 / 0.34 | 1.8-4.9 | 0.0 / 4.2 / 18.0 | 3.7 / 17.3 / 41.9 |
 | winter_peak | 1 | 113 / 472 | line 89-90, 80 MVA, needs 181 | reconductor line | n/a | 0.34 / 0.34 / 0.34 | 1.8-4.9 | 0.0 / 1.9 / 8.0 | 1.7 / 7.7 / 18.6 |
@@ -189,30 +193,30 @@
 | winter_peak | 25 | 49 / 66 | line 84-85, 27 MVA, needs 34 | reconductor line | n/a | 0.34 / 0.34 / 0.34 | 1.8-4.9 | 0.0 / 0.8 / 3.5 | 0.7 / 3.3 / 8.1 |
 | winter_peak | 26 | 229 / 0 | line 23-71, 53 MVA, needs 74 | reconductor line | n/a | 0.34 / 0.34 / 0.34 | 1.8-4.9 | 0.0 / 3.8 / 16.2 | 3.4 / 15.6 / 37.7 |
 | winter_peak | 27 | 253 / 153 | line 23-71, 53 MVA, needs 129 | reconductor line | n/a | 0.34 / 0.34 / 0.34 | 1.8-4.9 | 0.0 / 4.2 / 17.9 | 3.7 / 17.2 / 41.7 |
-| winter_peak | 28 | 305 / 244 | bus 49 0.899 pu, 35.2 MVAr | add reactive support | 0.4 / 3.6 / 7.0 | n/a | 1.8-4.9 | 0.0 / 5.0 / 21.6 | 4.5 / 20.7 / 50.2 |
+| winter_peak | 28 | 305 / 244 | bus 49 0.899 pu, 37.0 MVAr | add reactive support | 0.4 / 3.7 / 7.4 | n/a | 1.8-4.9 | 0.0 / 5.0 / 21.6 | 4.5 / 20.7 / 50.2 |
 | winter_peak | 29 | 136 / 88 | line 64-67, 131 MVA, needs 159 | reconductor line | n/a | 0.54 / 0.54 / 0.54 | 1.8-4.9 | 0.0 / 2.2 / 9.7 | 2.0 / 9.3 / 22.4 |
 | light_load | 0 | 117 / 0 | line 113-114, 57 MVA, needs 105 | reconductor line | n/a | 0.34 / 0.34 / 0.34 | 1.8-4.9 | 0.0 / 1.9 / 8.3 | 1.7 / 7.9 / 19.2 |
-| light_load | 1 | 0 / 222 | line 89-90, 80 MVA, needs 109 | reconductor line | n/a | 0.34 / 0.34 / 0.34 | 1.8-4.9 | 0.0 / 0.0 / 0.0 | 0.0 / 0.0 / 0.0 |
-| light_load | 2 | 0 / 20 | line 70-72, 21 MVA, needs 30 | reconductor line | n/a | 0.34 / 0.34 / 0.34 | 1.8-4.9 | 0.0 / 0.0 / 0.0 | 0.0 / 0.0 / 0.0 |
+| light_load | 1 | 0 / 222 | line 89-90, 80 MVA, needs 109 | reconductor line | n/a | 0.34 / 0.34 / 0.34 | 1.8-4.9 | n/a (no generation left out) | n/a (no generation left out) |
+| light_load | 2 | 0 / 20 | line 70-72, 21 MVA, needs 30 | reconductor line | n/a | 0.34 / 0.34 / 0.34 | 1.8-4.9 | n/a (no generation left out) | n/a (no generation left out) |
 | light_load | 3 | 130 / 0 | line 33-42, 63 MVA, needs 120 | reconductor line | n/a | 0.34 / 0.34 / 0.34 | 1.8-4.9 | 0.0 / 2.1 / 9.2 | 1.9 / 8.8 / 21.4 |
-| light_load | 4 | 0 / 25 | transformer 85-86, 22 MVA, needs 26 | add transformer | 0.1 / n/a / 0.1 | n/a | 1.8-4.9 (+ lead 1.5-4.0) | 0.0 / 0.0 / 0.0 | 0.0 / 0.0 / 0.0 |
+| light_load | 4 | 0 / 25 | transformer 85-86, 22 MVA, needs 26 | add transformer | 0.1 / n/a / 0.1 | n/a | 1.8-4.9 (+ lead 1.5-4.0) | n/a (no generation left out) | n/a (no generation left out) |
 | light_load | 5 | 93 / 152 | line 53-54, 34 MVA, needs 61 | reconductor line | n/a | 0.34 / 0.34 / 0.34 | 1.8-4.9 | 0.0 / 1.5 / 6.6 | 1.4 / 6.3 / 15.2 |
 | light_load | 6 | 56 / 0 | line 64-67, 131 MVA, needs 150 | reconductor line | n/a | 0.54 / 0.54 / 0.54 | 1.8-4.9 | 0.0 / 0.9 / 3.9 | 0.8 / 3.8 / 9.1 |
 | light_load | 7 | 143 / 0 | line 64-67, 131 MVA, needs 145 | reconductor line | n/a | 0.54 / 0.54 / 0.54 | 1.8-4.9 | 0.0 / 2.3 / 10.1 | 2.1 / 9.7 / 23.5 |
-| light_load | 8 | 0 / 19 | line 39-40, 55 MVA, needs 57 | reconductor line | n/a | 0.34 / 0.34 / 0.34 | 1.8-4.9 | 0.0 / 0.0 / 0.0 | 0.0 / 0.0 / 0.0 |
+| light_load | 8 | 0 / 19 | line 39-40, 55 MVA, needs 57 | reconductor line | n/a | 0.34 / 0.34 / 0.34 | 1.8-4.9 | n/a (no generation left out) | n/a (no generation left out) |
 | light_load | 9 | 256 / 44 | line 81-95, 63 MVA, needs 110 | reconductor line | n/a | 0.34 / 0.34 / 0.34 | 1.8-4.9 | 0.0 / 4.2 / 18.2 | 3.8 / 17.4 / 42.2 |
-| light_load | 10 | 0 / 53 | line 76-81, 51 MVA, needs 55 | reconductor line | n/a | 0.34 / 0.34 / 0.34 | 1.8-4.9 | 0.0 / 0.0 / 0.0 | 0.0 / 0.0 / 0.0 |
+| light_load | 10 | 0 / 53 | line 76-81, 51 MVA, needs 55 | reconductor line | n/a | 0.34 / 0.34 / 0.34 | 1.8-4.9 | n/a (no generation left out) | n/a (no generation left out) |
 | light_load | 12 | 328 / 222 | line 90-91, 84 MVA, needs 304 | reconductor line | n/a | 0.34 / 0.34 / 0.34 | 1.8-4.9 | 0.0 / 5.4 / 23.2 | 4.8 / 22.3 / 54.0 |
 | light_load | 16 | 134 / 0 | line 64-67, 131 MVA, needs 157 | reconductor line | n/a | 0.54 / 0.54 / 0.54 | 1.8-4.9 | 0.0 / 2.2 / 9.5 | 2.0 / 9.1 / 22.0 |
-| light_load | 17 | 0 / 87 | line 0-2, 103 MVA, needs 132 | reconductor line | n/a | 0.34 / 0.34 / 0.34 | 1.8-4.9 | 0.0 / 0.0 / 0.0 | 0.0 / 0.0 / 0.0 |
+| light_load | 17 | 0 / 87 | line 0-2, 103 MVA, needs 132 | reconductor line | n/a | 0.34 / 0.34 / 0.34 | 1.8-4.9 | n/a (no generation left out) | n/a (no generation left out) |
 | light_load | 18 | 83 / 0 | line 97-99, 50 MVA, needs 70 | reconductor line | n/a | 0.34 / 0.34 / 0.34 | 1.8-4.9 | 0.0 / 1.4 / 5.9 | 1.2 / 5.6 / 13.6 |
-| light_load | 19 | 0 / 107 | line 39-40, 55 MVA, needs 66 | reconductor line | n/a | 0.34 / 0.34 / 0.34 | 1.8-4.9 | 0.0 / 0.0 / 0.0 | 0.0 / 0.0 / 0.0 |
+| light_load | 19 | 0 / 107 | line 39-40, 55 MVA, needs 66 | reconductor line | n/a | 0.34 / 0.34 / 0.34 | 1.8-4.9 | n/a (no generation left out) | n/a (no generation left out) |
 | light_load | 20 | 160 / 0 | line 76-81, 51 MVA, needs 79 | reconductor line | n/a | 0.34 / 0.34 / 0.34 | 1.8-4.9 | 0.0 / 2.6 / 11.3 | 2.3 / 10.8 / 26.3 |
-| light_load | 22 | 0 / 46 | line 98-99, 60 MVA, needs 70 | reconductor line | n/a | 0.34 / 0.34 / 0.34 | 1.8-4.9 | 0.0 / 0.0 / 0.0 | 0.0 / 0.0 / 0.0 |
-| light_load | 23 | 0 / 89 | line 30-31, 99 MVA, needs 147 | reconductor line | n/a | 0.34 / 0.34 / 0.34 | 1.8-4.9 | 0.0 / 0.0 / 0.0 | 0.0 / 0.0 / 0.0 |
+| light_load | 22 | 0 / 46 | line 98-99, 60 MVA, needs 70 | reconductor line | n/a | 0.34 / 0.34 / 0.34 | 1.8-4.9 | n/a (no generation left out) | n/a (no generation left out) |
+| light_load | 23 | 0 / 89 | line 30-31, 99 MVA, needs 147 | reconductor line | n/a | 0.34 / 0.34 / 0.34 | 1.8-4.9 | n/a (no generation left out) | n/a (no generation left out) |
 | light_load | 24 | 173 / 0 | line 64-67, 131 MVA, needs 194 | reconductor line | n/a | 0.54 / 0.54 / 0.54 | 1.8-4.9 | 0.0 / 2.8 / 12.3 | 2.5 / 11.8 / 28.5 |
 | light_load | 27 | 103 / 60 | line 23-71, 53 MVA, needs 150 | reconductor line | n/a | 0.34 / 0.34 / 0.34 | 1.8-4.9 | 0.0 / 1.7 / 7.3 | 1.5 / 7.0 / 17.0 |
-| light_load | 28 | 0 / 52 | bus 49 0.900 pu, n/a MVAr | add reactive support | n/a | n/a | 1.8-4.9 | 0.0 / 0.0 / 0.0 | 0.0 / 0.0 / 0.0 |
+| light_load | 28 | 0 / 52 | bus 49 0.900 pu, 8.0 MVAr | add reactive support | 0.1 / 0.8 / 1.6 | n/a | 1.8-4.9 | n/a (no generation left out) | n/a (no generation left out) |
 
 ## Notes
 

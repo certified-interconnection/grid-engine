@@ -7332,12 +7332,16 @@
      "bus": 49,
      "kv": 138.0,
      "u_pu": 0.8999811548220471,
-     "mvar": null,
-     "mvar_at_t": null
+     "mvar": 47.0,
+     "mvar_at_t": 1.0
     },
     "upgrade": {
      "upgrade_class": "add reactive support",
-     "cost_usd": null,
+     "cost_usd": [
+      493782.0,
+      4749021.0,
+      9400000.0
+     ],
      "cost_usd_per_mile": null,
      "year_dollars": 2021,
      "time_years": [
@@ -7349,12 +7353,7 @@
       "pjm_queue_entry_to_cod_2013_2017",
       "miso_reactive_support"
      ],
-     "note": "MVAr need not computed; cost per MVAr only",
-     "cost_usd_per_mvar": [
-      10506.0,
-      101043.0,
-      200000.0
-     ]
+     "note": "47 MVAr"
     }
    },
    "lbnl_per_kw": {
@@ -7460,12 +7459,16 @@
      "bus": 49,
      "kv": 138.0,
      "u_pu": 0.8999811548220474,
-     "mvar": null,
-     "mvar_at_t": null
+     "mvar": 47.0,
+     "mvar_at_t": 1.0
     },
     "upgrade": {
      "upgrade_class": "add reactive support",
-     "cost_usd": null,
+     "cost_usd": [
+      493782.0,
+      4749021.0,
+      9400000.0
+     ],
      "cost_usd_per_mile": null,
      "year_dollars": 2021,
      "time_years": [
@@ -7477,12 +7480,7 @@
       "pjm_queue_entry_to_cod_2013_2017",
       "miso_reactive_support"
      ],
-     "note": "MVAr need not computed; cost per MVAr only",
-     "cost_usd_per_mvar": [
-      10506.0,
-      101043.0,
-      200000.0
-     ]
+     "note": "47 MVAr"
     }
    },
    "lbnl_per_kw": {
@@ -14882,15 +14880,15 @@
      "bus": 49,
      "kv": 138.0,
      "u_pu": 0.8993321967888163,
-     "mvar": 35.2,
-     "mvar_at_t": null
+     "mvar": 37.0,
+     "mvar_at_t": 1.0
     },
     "upgrade": {
      "upgrade_class": "add reactive support",
      "cost_usd": [
-      369811.2,
-      3556713.6,
-      7040000.000000001
+      388722.0,
+      3738591.0,
+      7400000.0
      ],
      "cost_usd_per_mile": null,
      "year_dollars": 2021,
@@ -14903,7 +14901,7 @@
       "pjm_queue_entry_to_cod_2013_2017",
       "miso_reactive_support"
      ],
-     "note": "35 MVAr"
+     "note": "37 MVAr"
     }
    },
    "lbnl_per_kw": {
@@ -15009,15 +15007,15 @@
      "bus": 49,
      "kv": 138.0,
      "u_pu": 0.8993321967888167,
-     "mvar": 35.2,
-     "mvar_at_t": null
+     "mvar": 37.0,
+     "mvar_at_t": 1.0
     },
     "upgrade": {
      "upgrade_class": "add reactive support",
      "cost_usd": [
-      369811.2,
-      3556713.6,
-      7040000.000000001
+      388722.0,
+      3738591.0,
+      7400000.0
      ],
      "cost_usd_per_mile": null,
      "year_dollars": 2021,
@@ -15030,7 +15028,7 @@
       "pjm_queue_entry_to_cod_2013_2017",
       "miso_reactive_support"
      ],
-     "note": "35 MVAr"
+     "note": "37 MVAr"
     }
    },
    "lbnl_per_kw": {
@@ -21026,12 +21024,16 @@
      "bus": 49,
      "kv": 138.0,
      "u_pu": 0.899767810805058,
-     "mvar": null,
-     "mvar_at_t": null
+     "mvar": 8.0,
+     "mvar_at_t": 1.0
     },
     "upgrade": {
      "upgrade_class": "add reactive support",
-     "cost_usd": null,
+     "cost_usd": [
+      84048.0,
+      808344.0,
+      1600000.0
+     ],
      "cost_usd_per_mile": null,
      "year_dollars": 2021,
      "time_years": [
@@ -21043,12 +21045,7 @@
       "pjm_queue_entry_to_cod_2013_2017",
       "miso_reactive_support"
      ],
-     "note": "MVAr need not computed; cost per MVAr only",
-     "cost_usd_per_mvar": [
-      10506.0,
-      101043.0,
-      200000.0
-     ]
+     "note": "8 MVAr"
     }
    },
    "lbnl_per_kw": {
@@ -21154,12 +21151,16 @@
      "bus": 49,
      "kv": 138.0,
      "u_pu": 0.899767810805058,
-     "mvar": null,
-     "mvar_at_t": null
+     "mvar": 8.0,
+     "mvar_at_t": 1.0
     },
     "upgrade": {
      "upgrade_class": "add reactive support",
-     "cost_usd": null,
+     "cost_usd": [
+      84048.0,
+      808344.0,
+      1600000.0
+     ],
      "cost_usd_per_mile": null,
      "year_dollars": 2021,
      "time_years": [
@@ -21171,12 +21172,7 @@
       "pjm_queue_entry_to_cod_2013_2017",
       "miso_reactive_support"
      ],
-     "note": "MVAr need not computed; cost per MVAr only",
-     "cost_usd_per_mvar": [
-      10506.0,
-      101043.0,
-      200000.0
-     ]
+     "note": "8 MVAr"
     }
    },
    "lbnl_per_kw": {

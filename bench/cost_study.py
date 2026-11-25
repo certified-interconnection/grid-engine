@@ -32,7 +32,7 @@ from gridengine.capacity import CapacityStudy                           # noqa: 
 from gridengine.costs import Sources, upgrade, per_kw_range              # noqa: E402
 
 CASE = sys.argv[1] if len(sys.argv) > 1 else "case118"
-NPROC = int(sys.argv[2]) if len(sys.argv) > 2 else 4
+NPROC = int(sys.argv[2]) if len(sys.argv) > 2 and sys.argv[2].isdigit() else 4
 TOL = 0.005          # the incremental rule's tolerance in CapacityStudy._ok
 _E = {}
 _CAP = {}
@@ -113,17 +113,25 @@ def reactive_need(cs, requests, scale, case, bus, z, low, qmax_mvar=2000.0):
     lo_b, hi_b = cs.eng.v_band
     sgn = 1.0 if low else -1.0
 
+    z_in_lo = bool((z["u"] >= lo_b).all())
+    z_in_hi = bool((z["u"] <= hi_b).all())
+
     def ok(q):
+        # the voltage part of CapacityStudy._ok: in band, or no worse than the no-request case if that was out
         r = raw(cs2, requests, scale, case, extra_q=(pos, sgn * q * 1e6))
         if not r["converged"]:
             return False
         if low:
-            return bool((r["u"] >= np.minimum(lo_b, z["u"]) - TOL).all())
-        return bool((r["u"] <= np.maximum(hi_b, z["u"]) + TOL).all())
+            return bool(r["u"].min() >= lo_b) if z_in_lo else bool((r["u"] >= np.minimum(lo_b, z["u"]) - TOL).all())
+        return bool(r["u"].max() <= hi_b) if z_in_hi else bool((r["u"] <= np.maximum(hi_b, z["u"]) + TOL).all())
 
-    if not ok(qmax_mvar):
-        return None
-    a, b = 0.0, qmax_mvar
+    # grow from 1 MVAr (very large injections can overshoot the band or diverge, so don't start at the top)
+    b = 1.0
+    while not ok(b):
+        b *= 2
+        if b > qmax_mvar:
+            return None
+    a = b / 2 if b > 1.0 else 0.0
     while b - a > 1.0:
         m = 0.5 * (a + b)
         a, b = (a, m) if ok(m) else (m, b)
@@ -234,7 +242,31 @@ def job(a):
     return study_cluster(cap["clusters"][i], name, Sources(), case_kv, trafo)
 
 
+def patch_voltage_rows():
+    """Recompute only the rows whose best-subset binding element is a voltage violation (after the reactive_need
+    fix) and rewrite the outputs; the other rows are unchanged by that fix."""
+    out = json.load(open(f"results/costs_{CASE}.json"))
+    cap = json.load(open(f"results/capacity_{CASE}.json"))
+    key = {(c["seed"], c["season"]): i for i, c in enumerate(cap["clusters"])}
+    todo = [n for n, r in enumerate(out["rows"]) if "best_subset_plus_rest" in r and
+            r["best_subset_plus_rest"]["element"]["kind"] in ("low_voltage", "high_voltage")]
+    for n in todo:
+        r = out["rows"][n]
+        out["rows"][n] = job((key[(r["seed"], r["season"])], r["set"]))
+        print("patched", r["season"], r["seed"], r["set"], out["rows"][n]["best_subset_plus_rest"]["element"])
+    json.dump(out, open(f"results/costs_{CASE}.json", "w"), indent=1, default=float)
+    write_md(out)
+
+
+def lb(r, st):
+    if r["rest_gen_mw"] <= 0:
+        return "n/a (no generation left out)"
+    return fmt_rng(r["lbnl_per_kw"][st]["cost_usd"])
+
+
 def main():
+    if "--patch-voltage" in sys.argv:
+        return patch_voltage_rows()
     t0 = time.time()
     cap = json.load(open(f"results/capacity_{CASE}.json"))
     src = Sources()
@@ -268,6 +300,14 @@ def write_md(out):
               f"{len(R)} clusters; {len(R) - len(need)} admit every request (no upgrade); {len(need)} leave "
               f"requests out. Best subsets re-checked secure: "
               f"{sum(r['best_subset_rechecked_secure'] for r in R)} of {len(R)}.", ""]
+        nb = sorted(r["full_cluster"]["n_branches_charged"] for r in need)
+        nu = sorted(r["full_cluster"]["n_buses_charged"] for r in need)
+        nd = sum(r["full_cluster"]["n_cases_diverged"] > 0 for r in need)
+        if need:
+            L += [f"With every request at full size, the requests overload a median of {np.median(nb):g} distinct "
+                  f"branches (min {nb[0]}, max {nb[-1]}) and push a median of {np.median(nu):g} buses out of band "
+                  f"(max {nu[-1]}) across all failing cases; {nd} clusters have at least one diverged case. One "
+                  f"binding element per row below is therefore a first step, not the full upgrade set.", ""]
         for key, title in (("best_subset_plus_rest", "binding case when the rest is added on top of the best subset"),
                            ("full_cluster", "binding case of the full cluster")):
             cnt = {}
@@ -294,7 +334,7 @@ def write_md(out):
             tys = f"{ty[0]:.1f}-{ty[1]:.1f}" + (f" (+ lead {lt[0]:.1f}-{lt[1]:.1f})" if lt else "")
             L.append(f"| {r['season']} | {r['seed']} | {r['rest_gen_mw']:.0f} / {r['rest_load_mw']:.0f} | {desc} | "
                      f"{u['upgrade_class']} | {fmt_rng(u['cost_usd'])} | {fmt_rng(u['cost_usd_per_mile'], nd=2)} | {tys} | "
-                     f"{fmt_rng(r['lbnl_per_kw']['complete']['cost_usd'])} | {fmt_rng(r['lbnl_per_kw']['active']['cost_usd'])} |")
+                     f"{lb(r, 'complete')} | {lb(r, 'active')} |")
         L += [""]
     L += ["## Notes", "",
           "- Time range: 25th to 75th percentile of PJM queue entry to commercial operation, requests entered "
