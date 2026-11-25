@@ -48,6 +48,8 @@ for kind in ("gen", "load"):
         stats[f"{s}/P1_binding_reasons"] = reasons
     summary[kind] = stats
 
+    allv = np.array([m[k]["mw"] for m in rows for k in ("N0", "P1")])
+    vmax = float(np.ceil(np.quantile(allv, 0.95) / 50) * 50)   # color scale to the 95th percentile; above it = darkest
     fig, ax = plt.subplots(figsize=(7.2, 7.6))
     writer = PillowWriter(fps=0.8)
     with writer.saving(fig, f"results/capacity_{CASE}_{kind}.gif", dpi=110):
@@ -57,8 +59,8 @@ for kind in ("gen", "load"):
             nx.draw_networkx_edges(G, pos, ax=ax, edge_color=EDGE, width=0.8)
             nodes = list(G.nodes)
             vals = np.array([mw.get(n, 0.0) for n in nodes])
-            sc = ax.scatter([pos[n][0] for n in nodes], [pos[n][1] for n in nodes], c=vals, cmap=SEQ, vmin=0, vmax=CAP,
-                            s=46, edgecolors=INK, linewidths=0.5, zorder=3)
+            sc = ax.scatter([pos[n][0] for n in nodes], [pos[n][1] for n in nodes], c=vals, cmap=SEQ, vmin=0, vmax=vmax,
+                            s=70, edgecolors=INK, linewidths=0.5, zorder=3)
             what = "new generation" if kind == "gen" else "new load"
             cond = "no outages (N-0)" if k == "N0" else "every single-line outage (P1)"
             ax.set_title(f"{CASE}: MW of {what} each bus can take\n{SEASON_NAME[s]}, {cond}", fontsize=11, color=INK,
@@ -67,7 +69,7 @@ for kind in ("gen", "load"):
             ax.text(0.0, -0.02, f"median {st['median_mw']:.0f} MW   at the {CAP:.0f} MW cap: {100*st['share_at_cap']:.0f}%   "
                     f"zero: {100*st['share_zero']:.0f}%", transform=ax.transAxes, fontsize=9, color=MUTED, family="monospace")
             if not hasattr(ax, "_cb"):
-                cb = fig.colorbar(sc, ax=ax, fraction=0.035, pad=0.01); cb.set_label("MW", color=MUTED); ax._cb = cb
+                cb = fig.colorbar(sc, ax=ax, fraction=0.035, pad=0.01); cb.set_label(f"MW (darkest = {vmax:.0f} or more)", color=MUTED); ax._cb = cb
             writer.grab_frame()
     plt.close(fig)
 

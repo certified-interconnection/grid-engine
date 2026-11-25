@@ -90,3 +90,40 @@ def capacity(case, bus, kind, contingencies, mw_max):
         if t <= 0:
             return 0.0
     return max(t, 0.0)
+
+
+def passes(case, requests, scale, contingencies):
+    """DC check of a set of requests (dicts bus/mw/kind) at `scale` (fraction of each), incremental rule as in capacity."""
+    d = _parts(case)
+    rate = np.where(d["rate"] > 0, d["rate"], np.inf)
+    v = np.zeros(d["nb"])
+    for r, s in zip(requests, scale):
+        v += s * r["mw"] * _direction(d, int(r["bus"]), r["kind"])
+    for c in [()] + list(contingencies):
+        F = _solve(np.vstack([d["p"], d["p"] + v]), d, c)
+        f0, f1 = F[:, 0], F[:, 1]
+        lim = np.maximum(rate, np.abs(f0)) + TOL * rate
+        if (np.abs(f1) > lim).any():
+            return False
+    return True
+
+
+def best_subset(case, requests, contingencies):
+    """The linear (DC) cluster pick: the subset with the most MW that passes in DC, all-or-nothing, exact.
+    This is the decision a DFAX / linear screen would make. DC is linear, so each case needs one solve per request
+    and every subset is then scored at once."""
+    d = _parts(case)
+    rate = np.where(d["rate"] > 0, d["rate"], np.inf)
+    k = len(requests)
+    mw = np.array([r["mw"] for r in requests])
+    V = np.array([r["mw"] * _direction(d, int(r["bus"]), r["kind"]) for r in requests])     # (k, nb)
+    A = np.array([[(m >> j) & 1 for j in range(k)] for m in range(1 << k)], float)        # (2^k, k)
+    ok = np.ones(len(A), bool)
+    for c in [()] + list(contingencies):
+        F = _solve(np.vstack([d["p"], V]), d, c)                                           # (n_branch, 1 + k)
+        f0, dF = F[:, 0], F[:, 1:]
+        lim = np.maximum(rate, np.abs(f0)) + TOL * rate
+        ok &= (np.abs(f0[None, :] + A @ dF.T) <= lim[None, :]).all(axis=1)
+    tot = A @ mw
+    best = int(np.argmax(np.where(ok, tot, -1)))
+    return dict(admitted=[j for j in range(k) if A[best, j]], mw=float(tot[best]))
