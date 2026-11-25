@@ -1,0 +1,29 @@
+{
+ "case30": {
+  "matpower_stored_max_dv": 0.039376291706414324,
+  "matpower_stored_max_dangle_deg": 3.958204696191189
+ },
+ "case118": {
+  "matpower_stored_max_dv": 0.01733261161539601,
+  "matpower_stored_max_dangle_deg": 0.3027399814370746
+ },
+ "case_ACTIVSg200": {
+  "matpower_stored_max_dv": 0.003796400000000144,
+  "matpower_stored_max_dangle_deg": 0.030995080556008858
+ },
+ "case300": {
+  "matpower_stored_max_dv": 0.008535717901498097,
+  "matpower_stored_max_dangle_deg": 9.76095353430876,
+  "pgm_reference_matched": 300,
+  "pgm_reference_max_dv": 1.1290968160437842e-13,
+  "pgm_reference_max_dangle_deg": 1.219106609404966e-11
+ },
+ "case_ACTIVSg500": {
+  "matpower_stored_max_dv": 0.05251090000000003,
+  "matpower_stored_max_dangle_deg": 0.19655325710874294
+ },
+ "case_ACTIVSg2000": {
+  "matpower_stored_max_dv": 0.0352325,
+  "matpower_stored_max_dangle_deg": 0.6388834624359845
+ }
+}
