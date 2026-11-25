@@ -1,0 +1,1294 @@
+{
+ "case": "pjm_generation_requests",
+ "input_file": "C:\\Users\\sehaj\\certinter\\pjm-queue-data\\data\\pjm_generation_requests.csv",
+ "source_url": "https://www.pjm.com/planning/services-requests/interconnection-queues.aspx",
+ "source_note": "PJM public PlanningQueues.xml, cleaned into data/pjm_generation_requests.csv by the pjm-queue-data repo (snapshot 2026-11-24). Dates as posted by PJM: submitted = queue entry.",
+ "unit": "years",
+ "min_group_size": 5,
+ "cohorts": {
+  "pre-2008": [
+   1900,
+   2007
+  ],
+  "2008-2012": [
+   2008,
+   2012
+  ],
+  "2013-2017": [
+   2013,
+   2017
+  ],
+  "2018+": [
+   2018,
+   2100
+  ]
+ },
+ "data_quality": {
+  "rows": 8190,
+  "submitted_present": 8190,
+  "in_service_present": 1217,
+  "withdrawn_present": 4094,
+  "in_service_present_by_status": {
+   "Deactivated": 58,
+   "In Service": 1140,
+   "Partially in Service - Under Construction": 10,
+   "Under Construction": 1,
+   "Withdrawn": 8
+  },
+  "withdrawn_present_by_status": {
+   "Active": 1,
+   "Deactivated": 1,
+   "In Service": 1,
+   "Withdrawn": 4091
+  },
+  "submitted_year_min": 1997,
+  "submitted_year_max": 2023,
+  "service_rows_used": 1205,
+  "service_rows_dropped_negative_duration": 4,
+  "service_rows_dropped_withdrawn_with_in_service_date": 8,
+  "withdrawal_rows_used": 4093,
+  "withdrawal_rows_dropped_negative_duration": 1,
+  "in_service_column_empty": 6973,
+  "withdrawn_column_empty": 4096
+ },
+ "service": {
+  "overall": {
+   "n": 1205,
+   "median": 2.825,
+   "mean": 3.28,
+   "small_sample": false,
+   "p25": 1.487,
+   "p75": 4.747
+  },
+  "by_fuel": {
+   "coal": {
+    "n": 65,
+    "median": 1.84,
+    "mean": 2.186,
+    "small_sample": false,
+    "p25": 0.805,
+    "p75": 3.072
+   },
+   "hydro": {
+    "n": 32,
+    "median": 1.665,
+    "mean": 2.694,
+    "small_sample": false,
+    "p25": 1.158,
+    "p75": 3.873
+   },
+   "natural gas": {
+    "n": 401,
+    "median": 2.675,
+    "mean": 2.968,
+    "small_sample": false,
+    "p25": 1.328,
+    "p75": 4.29
+   },
+   "nuclear": {
+    "n": 44,
+    "median": 4.073,
+    "mean": 3.99,
+    "small_sample": false,
+    "p25": 2.433,
+    "p75": 5.886
+   },
+   "offshore wind": {
+    "n": 1,
+    "median": 6.962,
+    "mean": 6.962,
+    "small_sample": true,
+    "p25": null,
+    "p75": null
+   },
+   "other": {
+    "n": 154,
+    "median": 1.544,
+    "mean": 1.883,
+    "small_sample": false,
+    "p25": 0.931,
+    "p75": 2.248
+   },
+   "solar": {
+    "n": 345,
+    "median": 3.984,
+    "mean": 4.008,
+    "small_sample": false,
+    "p25": 2.081,
+    "p75": 5.632
+   },
+   "solar+storage": {
+    "n": 7,
+    "median": 1.459,
+    "mean": 1.72,
+    "small_sample": false,
+    "p25": 1.044,
+    "p75": 2.219
+   },
+   "storage": {
+    "n": 40,
+    "median": 2.148,
+    "mean": 2.866,
+    "small_sample": false,
+    "p25": 1.475,
+    "p75": 3.804
+   },
+   "wind": {
+    "n": 116,
+    "median": 4.068,
+    "mean": 4.756,
+    "small_sample": false,
+    "p25": 2.78,
+    "p75": 6.466
+   }
+  },
+  "by_cohort": {
+   "2008-2012": {
+    "n": 291,
+    "median": 2.951,
+    "mean": 3.556,
+    "small_sample": false,
+    "p25": 1.606,
+    "p75": 5.199
+   },
+   "2013-2017": {
+    "n": 385,
+    "median": 3.162,
+    "mean": 3.562,
+    "small_sample": false,
+    "p25": 1.78,
+    "p75": 4.917
+   },
+   "2018+": {
+    "n": 154,
+    "median": 2.523,
+    "mean": 2.832,
+    "small_sample": false,
+    "p25": 0.951,
+    "p75": 4.581
+   },
+   "pre-2008": {
+    "n": 375,
+    "median": 2.385,
+    "mean": 2.959,
+    "small_sample": false,
+    "p25": 1.127,
+    "p75": 4.151
+   }
+  },
+  "by_year": {
+   "1997": {
+    "n": 10,
+    "median": 5.04,
+    "mean": 5.181,
+    "small_sample": false,
+    "p25": 4.461,
+    "p75": 5.727
+   },
+   "1998": {
+    "n": 9,
+    "median": 4.033,
+    "mean": 4.316,
+    "small_sample": false,
+    "p25": 3.231,
+    "p75": 4.567
+   },
+   "1999": {
+    "n": 28,
+    "median": 3.225,
+    "mean": 3.445,
+    "small_sample": false,
+    "p25": 2.266,
+    "p75": 4.525
+   },
+   "2000": {
+    "n": 24,
+    "median": 1.54,
+    "mean": 1.667,
+    "small_sample": false,
+    "p25": 0.288,
+    "p75": 2.614
+   },
+   "2001": {
+    "n": 26,
+    "median": 2.011,
+    "mean": 2.391,
+    "small_sample": false,
+    "p25": 0.904,
+    "p75": 2.975
+   },
+   "2002": {
+    "n": 16,
+    "median": 2.427,
+    "mean": 3.242,
+    "small_sample": false,
+    "p25": 1.409,
+    "p75": 5.618
+   },
+   "2003": {
+    "n": 21,
+    "median": 1.492,
+    "mean": 2.449,
+    "small_sample": false,
+    "p25": 1.04,
+    "p75": 3.269
+   },
+   "2004": {
+    "n": 21,
+    "median": 1.766,
+    "mean": 2.262,
+    "small_sample": false,
+    "p25": 1.191,
+    "p75": 2.338
+   },
+   "2005": {
+    "n": 51,
+    "median": 2.85,
+    "mean": 3.782,
+    "small_sample": false,
+    "p25": 1.689,
+    "p75": 5.466
+   },
+   "2006": {
+    "n": 52,
+    "median": 2.601,
+    "mean": 3.05,
+    "small_sample": false,
+    "p25": 1.092,
+    "p75": 4.609
+   },
+   "2007": {
+    "n": 117,
+    "median": 2.103,
+    "mean": 2.719,
+    "small_sample": false,
+    "p25": 0.838,
+    "p75": 3.836
+   },
+   "2008": {
+    "n": 46,
+    "median": 3.102,
+    "mean": 3.549,
+    "small_sample": false,
+    "p25": 0.961,
+    "p75": 4.993
+   },
+   "2009": {
+    "n": 52,
+    "median": 2.193,
+    "mean": 3.243,
+    "small_sample": false,
+    "p25": 1.287,
+    "p75": 4.236
+   },
+   "2010": {
+    "n": 81,
+    "median": 3.926,
+    "mean": 4.061,
+    "small_sample": false,
+    "p25": 1.914,
+    "p75": 6.248
+   },
+   "2011": {
+    "n": 59,
+    "median": 2.453,
+    "mean": 3.523,
+    "small_sample": false,
+    "p25": 1.691,
+    "p75": 5.12
+   },
+   "2012": {
+    "n": 53,
+    "median": 2.653,
+    "mean": 3.137,
+    "small_sample": false,
+    "p25": 1.467,
+    "p75": 4.318
+   },
+   "2013": {
+    "n": 74,
+    "median": 2.664,
+    "mean": 2.869,
+    "small_sample": false,
+    "p25": 1.793,
+    "p75": 3.453
+   },
+   "2014": {
+    "n": 72,
+    "median": 2.379,
+    "mean": 2.826,
+    "small_sample": false,
+    "p25": 1.462,
+    "p75": 4.031
+   },
+   "2015": {
+    "n": 71,
+    "median": 3.559,
+    "mean": 3.734,
+    "small_sample": false,
+    "p25": 1.593,
+    "p75": 5.201
+   },
+   "2016": {
+    "n": 103,
+    "median": 4.055,
+    "mean": 4.183,
+    "small_sample": false,
+    "p25": 2.163,
+    "p75": 5.823
+   },
+   "2017": {
+    "n": 65,
+    "median": 4.011,
+    "mean": 3.995,
+    "small_sample": false,
+    "p25": 2.146,
+    "p75": 5.895
+   },
+   "2018": {
+    "n": 49,
+    "median": 3.576,
+    "mean": 3.627,
+    "small_sample": false,
+    "p25": 1.785,
+    "p75": 5.478
+   },
+   "2019": {
+    "n": 76,
+    "median": 1.569,
+    "mean": 2.471,
+    "small_sample": false,
+    "p25": 0.767,
+    "p75": 4.39
+   },
+   "2020": {
+    "n": 29,
+    "median": 2.563,
+    "mean": 2.438,
+    "small_sample": false,
+    "p25": 1.207,
+    "p75": 3.206
+   }
+  },
+  "by_cohort_fuel": {
+   "2008-2012 | coal": {
+    "n": 14,
+    "median": 1.257,
+    "mean": 1.121,
+    "small_sample": false,
+    "p25": 0.58,
+    "p75": 1.606
+   },
+   "2008-2012 | hydro": {
+    "n": 3,
+    "median": 5.908,
+    "mean": 5.208,
+    "small_sample": true,
+    "p25": null,
+    "p75": null
+   },
+   "2008-2012 | natural gas": {
+    "n": 78,
+    "median": 3.446,
+    "mean": 3.694,
+    "small_sample": false,
+    "p25": 2.051,
+    "p75": 5.157
+   },
+   "2008-2012 | nuclear": {
+    "n": 13,
+    "median": 4.12,
+    "mean": 4.519,
+    "small_sample": false,
+    "p25": 4.025,
+    "p75": 6.034
+   },
+   "2008-2012 | other": {
+    "n": 48,
+    "median": 1.845,
+    "mean": 2.125,
+    "small_sample": false,
+    "p25": 1.213,
+    "p75": 2.751
+   },
+   "2008-2012 | solar": {
+    "n": 106,
+    "median": 3.447,
+    "mean": 3.828,
+    "small_sample": false,
+    "p25": 1.893,
+    "p75": 5.622
+   },
+   "2008-2012 | storage": {
+    "n": 7,
+    "median": 1.432,
+    "mean": 1.66,
+    "small_sample": false,
+    "p25": 0.983,
+    "p75": 1.796
+   },
+   "2008-2012 | wind": {
+    "n": 22,
+    "median": 6.738,
+    "mean": 6.244,
+    "small_sample": false,
+    "p25": 3.579,
+    "p75": 8.74
+   },
+   "2013-2017 | coal": {
+    "n": 9,
+    "median": 2.086,
+    "mean": 2.325,
+    "small_sample": false,
+    "p25": 1.771,
+    "p75": 2.335
+   },
+   "2013-2017 | hydro": {
+    "n": 13,
+    "median": 1.399,
+    "mean": 1.562,
+    "small_sample": false,
+    "p25": 1.133,
+    "p75": 1.588
+   },
+   "2013-2017 | natural gas": {
+    "n": 139,
+    "median": 2.924,
+    "mean": 3.161,
+    "small_sample": false,
+    "p25": 1.643,
+    "p75": 4.244
+   },
+   "2013-2017 | nuclear": {
+    "n": 2,
+    "median": 3.142,
+    "mean": 3.142,
+    "small_sample": true,
+    "p25": null,
+    "p75": null
+   },
+   "2013-2017 | offshore wind": {
+    "n": 1,
+    "median": 6.962,
+    "mean": 6.962,
+    "small_sample": true,
+    "p25": null,
+    "p75": null
+   },
+   "2013-2017 | other": {
+    "n": 20,
+    "median": 1.67,
+    "mean": 1.929,
+    "small_sample": false,
+    "p25": 0.823,
+    "p75": 2.196
+   },
+   "2013-2017 | solar": {
+    "n": 155,
+    "median": 4.501,
+    "mean": 4.408,
+    "small_sample": false,
+    "p25": 2.728,
+    "p75": 6.066
+   },
+   "2013-2017 | solar+storage": {
+    "n": 4,
+    "median": 1.17,
+    "mean": 1.525,
+    "small_sample": true,
+    "p25": null,
+    "p75": null
+   },
+   "2013-2017 | storage": {
+    "n": 22,
+    "median": 2.208,
+    "mean": 3.245,
+    "small_sample": false,
+    "p25": 1.752,
+    "p75": 3.762
+   },
+   "2013-2017 | wind": {
+    "n": 20,
+    "median": 3.819,
+    "mean": 3.909,
+    "small_sample": false,
+    "p25": 2.739,
+    "p75": 5.073
+   },
+   "2018+ | coal": {
+    "n": 1,
+    "median": 3.072,
+    "mean": 3.072,
+    "small_sample": true,
+    "p25": null,
+    "p75": null
+   },
+   "2018+ | hydro": {
+    "n": 1,
+    "median": 1.659,
+    "mean": 1.659,
+    "small_sample": true,
+    "p25": null,
+    "p75": null
+   },
+   "2018+ | natural gas": {
+    "n": 41,
+    "median": 1.3,
+    "mean": 1.896,
+    "small_sample": false,
+    "p25": 0.767,
+    "p75": 2.856
+   },
+   "2018+ | other": {
+    "n": 9,
+    "median": 0.767,
+    "mean": 0.823,
+    "small_sample": false,
+    "p25": 0.767,
+    "p75": 0.767
+   },
+   "2018+ | solar": {
+    "n": 83,
+    "median": 3.669,
+    "mean": 3.532,
+    "small_sample": false,
+    "p25": 1.822,
+    "p75": 5.091
+   },
+   "2018+ | solar+storage": {
+    "n": 3,
+    "median": 1.514,
+    "mean": 1.98,
+    "small_sample": true,
+    "p25": null,
+    "p75": null
+   },
+   "2018+ | storage": {
+    "n": 10,
+    "median": 2.311,
+    "mean": 2.837,
+    "small_sample": false,
+    "p25": 1.407,
+    "p75": 4.051
+   },
+   "2018+ | wind": {
+    "n": 6,
+    "median": 2.886,
+    "mean": 3.13,
+    "small_sample": false,
+    "p25": 2.474,
+    "p75": 3.466
+   },
+   "pre-2008 | coal": {
+    "n": 41,
+    "median": 1.903,
+    "mean": 2.498,
+    "small_sample": false,
+    "p25": 0.775,
+    "p75": 3.836
+   },
+   "pre-2008 | hydro": {
+    "n": 15,
+    "median": 3.789,
+    "mean": 3.241,
+    "small_sample": false,
+    "p25": 1.363,
+    "p75": 4.101
+   },
+   "pre-2008 | natural gas": {
+    "n": 143,
+    "median": 2.234,
+    "mean": 2.691,
+    "small_sample": false,
+    "p25": 0.838,
+    "p75": 3.943
+   },
+   "pre-2008 | nuclear": {
+    "n": 29,
+    "median": 3.836,
+    "mean": 3.811,
+    "small_sample": false,
+    "p25": 1.5,
+    "p75": 5.886
+   },
+   "pre-2008 | other": {
+    "n": 77,
+    "median": 1.528,
+    "mean": 1.844,
+    "small_sample": false,
+    "p25": 1.051,
+    "p75": 2.185
+   },
+   "pre-2008 | solar": {
+    "n": 1,
+    "median": 0.663,
+    "mean": 0.663,
+    "small_sample": true,
+    "p25": null,
+    "p75": null
+   },
+   "pre-2008 | storage": {
+    "n": 1,
+    "median": 3.264,
+    "mean": 3.264,
+    "small_sample": true,
+    "p25": null,
+    "p75": null
+   },
+   "pre-2008 | wind": {
+    "n": 68,
+    "median": 3.962,
+    "mean": 4.667,
+    "small_sample": false,
+    "p25": 2.734,
+    "p75": 6.081
+   }
+  }
+ },
+ "withdrawal": {
+  "overall": {
+   "n": 4093,
+   "median": 1.314,
+   "mean": 2.071,
+   "small_sample": false,
+   "p25": 0.509,
+   "p75": 3.242
+  },
+  "by_fuel": {
+   "coal": {
+    "n": 66,
+    "median": 1.347,
+    "mean": 2.076,
+    "small_sample": false,
+    "p25": 0.613,
+    "p75": 2.803
+   },
+   "hydro": {
+    "n": 52,
+    "median": 1.183,
+    "mean": 1.9,
+    "small_sample": false,
+    "p25": 0.586,
+    "p75": 1.867
+   },
+   "natural gas": {
+    "n": 596,
+    "median": 1.359,
+    "mean": 2.084,
+    "small_sample": false,
+    "p25": 0.673,
+    "p75": 2.749
+   },
+   "nuclear": {
+    "n": 22,
+    "median": 2.674,
+    "mean": 4.297,
+    "small_sample": false,
+    "p25": 1.955,
+    "p75": 5.405
+   },
+   "offshore wind": {
+    "n": 44,
+    "median": 2.658,
+    "mean": 3.061,
+    "small_sample": false,
+    "p25": 0.723,
+    "p75": 4.787
+   },
+   "other": {
+    "n": 191,
+    "median": 1.418,
+    "mean": 2.03,
+    "small_sample": false,
+    "p25": 0.523,
+    "p75": 2.528
+   },
+   "solar": {
+    "n": 2015,
+    "median": 1.029,
+    "mean": 1.752,
+    "small_sample": false,
+    "p25": 0.433,
+    "p75": 2.951
+   },
+   "solar+storage": {
+    "n": 214,
+    "median": 2.048,
+    "mean": 2.108,
+    "small_sample": false,
+    "p25": 0.504,
+    "p75": 3.644
+   },
+   "storage": {
+    "n": 416,
+    "median": 1.677,
+    "mean": 2.114,
+    "small_sample": false,
+    "p25": 0.489,
+    "p75": 3.723
+   },
+   "wind": {
+    "n": 477,
+    "median": 2.119,
+    "mean": 3.193,
+    "small_sample": false,
+    "p25": 0.865,
+    "p75": 4.819
+   }
+  },
+  "by_cohort": {
+   "2008-2012": {
+    "n": 1052,
+    "median": 1.28,
+    "mean": 2.206,
+    "small_sample": false,
+    "p25": 0.559,
+    "p75": 3.11
+   },
+   "2013-2017": {
+    "n": 904,
+    "median": 1.172,
+    "mean": 1.81,
+    "small_sample": false,
+    "p25": 0.46,
+    "p75": 2.662
+   },
+   "2018+": {
+    "n": 1625,
+    "median": 1.342,
+    "mean": 1.892,
+    "small_sample": false,
+    "p25": 0.433,
+    "p75": 3.387
+   },
+   "pre-2008": {
+    "n": 512,
+    "median": 1.812,
+    "mean": 2.825,
+    "small_sample": false,
+    "p25": 0.76,
+    "p75": 4.06
+   }
+  },
+  "by_year": {
+   "1997": {
+    "n": 2,
+    "median": 4.316,
+    "mean": 4.316,
+    "small_sample": true,
+    "p25": null,
+    "p75": null
+   },
+   "1998": {
+    "n": 9,
+    "median": 2.13,
+    "mean": 2.58,
+    "small_sample": false,
+    "p25": 1.024,
+    "p75": 3.485
+   },
+   "1999": {
+    "n": 45,
+    "median": 2.122,
+    "mean": 2.429,
+    "small_sample": false,
+    "p25": 0.945,
+    "p75": 2.949
+   },
+   "2000": {
+    "n": 35,
+    "median": 2.04,
+    "mean": 2.252,
+    "small_sample": false,
+    "p25": 1.532,
+    "p75": 2.749
+   },
+   "2001": {
+    "n": 43,
+    "median": 0.873,
+    "mean": 1.625,
+    "small_sample": false,
+    "p25": 0.691,
+    "p75": 1.803
+   },
+   "2002": {
+    "n": 26,
+    "median": 1.205,
+    "mean": 1.714,
+    "small_sample": false,
+    "p25": 0.682,
+    "p75": 1.663
+   },
+   "2003": {
+    "n": 31,
+    "median": 1.175,
+    "mean": 2.694,
+    "small_sample": false,
+    "p25": 0.631,
+    "p75": 3.487
+   },
+   "2004": {
+    "n": 33,
+    "median": 1.114,
+    "mean": 2.323,
+    "small_sample": false,
+    "p25": 0.663,
+    "p75": 1.982
+   },
+   "2005": {
+    "n": 82,
+    "median": 3.179,
+    "mean": 3.832,
+    "small_sample": false,
+    "p25": 0.748,
+    "p75": 7.042
+   },
+   "2006": {
+    "n": 105,
+    "median": 2.839,
+    "mean": 3.558,
+    "small_sample": false,
+    "p25": 0.824,
+    "p75": 4.914
+   },
+   "2007": {
+    "n": 101,
+    "median": 1.856,
+    "mean": 2.614,
+    "small_sample": false,
+    "p25": 0.925,
+    "p75": 4.559
+   },
+   "2008": {
+    "n": 169,
+    "median": 1.673,
+    "mean": 2.791,
+    "small_sample": false,
+    "p25": 0.572,
+    "p75": 4.027
+   },
+   "2009": {
+    "n": 121,
+    "median": 2.116,
+    "mean": 2.967,
+    "small_sample": false,
+    "p25": 0.736,
+    "p75": 3.978
+   },
+   "2010": {
+    "n": 361,
+    "median": 1.437,
+    "mean": 2.284,
+    "small_sample": false,
+    "p25": 0.676,
+    "p75": 3.485
+   },
+   "2011": {
+    "n": 295,
+    "median": 0.879,
+    "mean": 1.618,
+    "small_sample": false,
+    "p25": 0.472,
+    "p75": 2.123
+   },
+   "2012": {
+    "n": 106,
+    "median": 1.073,
+    "mean": 1.779,
+    "small_sample": false,
+    "p25": 0.552,
+    "p75": 2.307
+   },
+   "2013": {
+    "n": 79,
+    "median": 0.876,
+    "mean": 1.68,
+    "small_sample": false,
+    "p25": 0.539,
+    "p75": 2.062
+   },
+   "2014": {
+    "n": 119,
+    "median": 1.399,
+    "mean": 2.107,
+    "small_sample": false,
+    "p25": 0.59,
+    "p75": 3.069
+   },
+   "2015": {
+    "n": 228,
+    "median": 1.247,
+    "mean": 1.972,
+    "small_sample": false,
+    "p25": 0.434,
+    "p75": 3.098
+   },
+   "2016": {
+    "n": 247,
+    "median": 1.136,
+    "mean": 1.61,
+    "small_sample": false,
+    "p25": 0.411,
+    "p75": 2.099
+   },
+   "2017": {
+    "n": 231,
+    "median": 1.046,
+    "mean": 1.755,
+    "small_sample": false,
+    "p25": 0.463,
+    "p75": 2.595
+   },
+   "2018": {
+    "n": 293,
+    "median": 1.194,
+    "mean": 1.747,
+    "small_sample": false,
+    "p25": 0.151,
+    "p75": 2.664
+   },
+   "2019": {
+    "n": 367,
+    "median": 1.027,
+    "mean": 1.938,
+    "small_sample": false,
+    "p25": 0.435,
+    "p75": 3.936
+   },
+   "2020": {
+    "n": 562,
+    "median": 2.886,
+    "mean": 2.262,
+    "small_sample": false,
+    "p25": 0.504,
+    "p75": 3.732
+   },
+   "2021": {
+    "n": 269,
+    "median": 1.99,
+    "mean": 1.714,
+    "small_sample": false,
+    "p25": 0.233,
+    "p75": 2.902
+   },
+   "2022": {
+    "n": 121,
+    "median": 0.225,
+    "mean": 0.876,
+    "small_sample": false,
+    "p25": 0.077,
+    "p75": 1.815
+   },
+   "2023": {
+    "n": 13,
+    "median": 0.756,
+    "mean": 1.002,
+    "small_sample": false,
+    "p25": 0.534,
+    "p75": 1.643
+   }
+  },
+  "by_cohort_fuel": {
+   "2008-2012 | coal": {
+    "n": 17,
+    "median": 1.021,
+    "mean": 1.811,
+    "small_sample": false,
+    "p25": 0.537,
+    "p75": 2.081
+   },
+   "2008-2012 | hydro": {
+    "n": 30,
+    "median": 1.431,
+    "mean": 2.313,
+    "small_sample": false,
+    "p25": 0.891,
+    "p75": 1.867
+   },
+   "2008-2012 | natural gas": {
+    "n": 142,
+    "median": 1.324,
+    "mean": 2.196,
+    "small_sample": false,
+    "p25": 0.574,
+    "p75": 2.728
+   },
+   "2008-2012 | nuclear": {
+    "n": 13,
+    "median": 1.963,
+    "mean": 4.633,
+    "small_sample": false,
+    "p25": 1.632,
+    "p75": 10.1
+   },
+   "2008-2012 | offshore wind": {
+    "n": 12,
+    "median": 0.95,
+    "mean": 3.431,
+    "small_sample": false,
+    "p25": 0.514,
+    "p75": 6.087
+   },
+   "2008-2012 | other": {
+    "n": 88,
+    "median": 1.899,
+    "mean": 2.094,
+    "small_sample": false,
+    "p25": 0.76,
+    "p75": 2.283
+   },
+   "2008-2012 | solar": {
+    "n": 548,
+    "median": 0.956,
+    "mean": 1.86,
+    "small_sample": false,
+    "p25": 0.517,
+    "p75": 2.859
+   },
+   "2008-2012 | storage": {
+    "n": 23,
+    "median": 1.361,
+    "mean": 1.947,
+    "small_sample": false,
+    "p25": 0.557,
+    "p75": 1.669
+   },
+   "2008-2012 | wind": {
+    "n": 179,
+    "median": 2.064,
+    "mean": 3.123,
+    "small_sample": false,
+    "p25": 0.891,
+    "p75": 4.693
+   },
+   "2013-2017 | coal": {
+    "n": 3,
+    "median": 2.133,
+    "mean": 1.806,
+    "small_sample": true,
+    "p25": null,
+    "p75": null
+   },
+   "2013-2017 | hydro": {
+    "n": 10,
+    "median": 0.586,
+    "mean": 0.93,
+    "small_sample": false,
+    "p25": 0.586,
+    "p75": 0.785
+   },
+   "2013-2017 | natural gas": {
+    "n": 208,
+    "median": 1.185,
+    "mean": 2.058,
+    "small_sample": false,
+    "p25": 0.597,
+    "p75": 2.862
+   },
+   "2013-2017 | offshore wind": {
+    "n": 3,
+    "median": 2.96,
+    "mean": 3.894,
+    "small_sample": true,
+    "p25": null,
+    "p75": null
+   },
+   "2013-2017 | other": {
+    "n": 35,
+    "median": 0.824,
+    "mean": 1.169,
+    "small_sample": false,
+    "p25": 0.381,
+    "p75": 1.503
+   },
+   "2013-2017 | solar": {
+    "n": 463,
+    "median": 0.999,
+    "mean": 1.583,
+    "small_sample": false,
+    "p25": 0.402,
+    "p75": 2.289
+   },
+   "2013-2017 | solar+storage": {
+    "n": 5,
+    "median": 0.715,
+    "mean": 1.086,
+    "small_sample": false,
+    "p25": 0.687,
+    "p75": 1.216
+   },
+   "2013-2017 | storage": {
+    "n": 112,
+    "median": 1.622,
+    "mean": 2.235,
+    "small_sample": false,
+    "p25": 0.592,
+    "p75": 4.066
+   },
+   "2013-2017 | wind": {
+    "n": 65,
+    "median": 1.87,
+    "mean": 2.346,
+    "small_sample": false,
+    "p25": 0.805,
+    "p75": 3.882
+   },
+   "2018+ | coal": {
+    "n": 1,
+    "median": 2.587,
+    "mean": 2.587,
+    "small_sample": true,
+    "p25": null,
+    "p75": null
+   },
+   "2018+ | hydro": {
+    "n": 7,
+    "median": 0.687,
+    "mean": 1.846,
+    "small_sample": false,
+    "p25": 0.297,
+    "p75": 2.972
+   },
+   "2018+ | natural gas": {
+    "n": 46,
+    "median": 1.739,
+    "mean": 1.834,
+    "small_sample": false,
+    "p25": 0.499,
+    "p75": 2.852
+   },
+   "2018+ | nuclear": {
+    "n": 2,
+    "median": 2.674,
+    "mean": 2.674,
+    "small_sample": true,
+    "p25": null,
+    "p75": null
+   },
+   "2018+ | offshore wind": {
+    "n": 21,
+    "median": 3.636,
+    "mean": 3.01,
+    "small_sample": false,
+    "p25": 1.336,
+    "p75": 4.465
+   },
+   "2018+ | other": {
+    "n": 6,
+    "median": 2.331,
+    "mean": 1.884,
+    "small_sample": false,
+    "p25": 0.607,
+    "p75": 2.743
+   },
+   "2018+ | solar": {
+    "n": 1004,
+    "median": 1.107,
+    "mean": 1.77,
+    "small_sample": false,
+    "p25": 0.419,
+    "p75": 3.166
+   },
+   "2018+ | solar+storage": {
+    "n": 209,
+    "median": 2.24,
+    "mean": 2.133,
+    "small_sample": false,
+    "p25": 0.496,
+    "p75": 3.655
+   },
+   "2018+ | storage": {
+    "n": 281,
+    "median": 1.848,
+    "mean": 2.08,
+    "small_sample": false,
+    "p25": 0.465,
+    "p75": 3.644
+   },
+   "2018+ | wind": {
+    "n": 48,
+    "median": 1.265,
+    "mean": 1.823,
+    "small_sample": false,
+    "p25": 0.468,
+    "p75": 3.389
+   },
+   "pre-2008 | coal": {
+    "n": 45,
+    "median": 1.347,
+    "mean": 2.183,
+    "small_sample": false,
+    "p25": 0.638,
+    "p75": 3.047
+   },
+   "pre-2008 | hydro": {
+    "n": 5,
+    "median": 1.656,
+    "mean": 1.433,
+    "small_sample": false,
+    "p25": 1.262,
+    "p75": 1.684
+   },
+   "pre-2008 | natural gas": {
+    "n": 200,
+    "median": 1.474,
+    "mean": 2.091,
+    "small_sample": false,
+    "p25": 0.791,
+    "p75": 2.674
+   },
+   "pre-2008 | nuclear": {
+    "n": 7,
+    "median": 3.409,
+    "mean": 4.137,
+    "small_sample": false,
+    "p25": 2.156,
+    "p75": 5.405
+   },
+   "pre-2008 | offshore wind": {
+    "n": 8,
+    "median": 1.676,
+    "mean": 2.325,
+    "small_sample": false,
+    "p25": 0.812,
+    "p75": 2.885
+   },
+   "pre-2008 | other": {
+    "n": 62,
+    "median": 1.207,
+    "mean": 2.441,
+    "small_sample": false,
+    "p25": 0.523,
+    "p75": 4.424
+   },
+   "pre-2008 | wind": {
+    "n": 185,
+    "median": 2.858,
+    "mean": 3.913,
+    "small_sample": false,
+    "p25": 1.043,
+    "p75": 6.853
+   }
+  }
+ },
+ "pending_active": {
+  "overall": {
+   "n": 2348,
+   "median": 5.205,
+   "mean": 5.156,
+   "small_sample": false,
+   "p25": 4.331,
+   "p75": 5.676
+  },
+  "by_cohort": {
+   "2018+": {
+    "n": 2348,
+    "median": 5.205,
+    "mean": 5.156,
+    "small_sample": false,
+    "p25": 4.331,
+    "p75": 5.676
+   }
+  }
+ }
+}
