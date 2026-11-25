@@ -54,3 +54,17 @@ def test_seasons_scale_load():
     c = load_case("case118")
     w = apply_season(c, "light_load")
     assert np.isclose(w["bus"][:, 2].sum(), 0.55 * c["bus"][:, 2].sum())
+
+
+def test_light_load_switches_capacitors():
+    c = load_case("case118")
+    w = apply_season(c, "light_load")
+    caps = c["bus"][:, 5] > 0
+    assert np.allclose(w["bus"][caps, 5], 0.55 * c["bus"][caps, 5])
+    assert np.allclose(w["bus"][~caps, 5], c["bus"][~caps, 5])
+
+
+def test_texas2000_light_load_base_case_is_secure():
+    # regression: with capacitors left in at 55% load the base case ran at 152% loading and 1.15 pu
+    r = Engine(apply_season(load_case("case_ACTIVSg2000"), "light_load")).base_case()
+    assert r["converged"][0] and r["max_loading"][0] < 1.0 and r["vmax"][0] < 1.1
