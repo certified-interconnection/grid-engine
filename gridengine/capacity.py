@@ -84,14 +84,7 @@ class CapacityStudy:
             g["id"] = self.input["sym_gen"]["id"][None, :]
             g["p_specified"] = (self.gen_p0 * max(1.0 - net[0] / self.gen_p0.sum(), 0.0))[None, :]
             upd["sym_gen"] = g
-        failed = np.zeros(n, dtype=bool)
-        try:
-            out = self.model.calculate_power_flow(update_data=upd, calculation_method=CalculationMethod.newton_raphson,
-                                                  error_tolerance=1e-8, max_iterations=30, continue_on_batch_error=True,
-                                                  calculation_initialization=self.eng.init)
-        except PowerGridBatchError as e:
-            out = e.output
-            failed[np.asarray(e.failed_scenarios, dtype=int)] = True
+        out, failed = self.eng.run(model=self.model, update=upd, n=n)   # engine options apply (e.g. q_limits)
         self.solves += n
         return self.eng._summarize(out, single=False, failed=failed)
 

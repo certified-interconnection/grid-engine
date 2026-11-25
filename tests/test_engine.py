@@ -88,3 +88,13 @@ def test_best_subset_beats_fixed_orders():
     cs = CapacityStudy(eng, [10, 25, 26])
     best = cs.best_subset(req, P1)
     assert best["mw"] >= cs.admit(req, P1)["mw"] and best["mw"] >= cs.admit(req, P1, order=[2, 1, 0])["mw"]
+
+
+@pytest.mark.parametrize("name", ["case118", "case300"])
+def test_q_limits_match_matpower_outer_loop(name):
+    from gridengine.qlim_ref import solve_qlim
+    c = load_case(name)
+    out, failed = Engine(c, q_limits=True).run(tol=1e-10)
+    v, ok = solve_qlim(c)
+    assert ok and not failed[0]
+    assert np.abs(v - out["node"]["u_pu"][0]).max() < 1e-8

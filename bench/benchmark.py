@@ -11,6 +11,7 @@ n_pp = int(sys.argv[2]) if len(sys.argv) > 2 else 40
 out = dict(case=name)
 t = time.perf_counter(); base = Engine(load_case(name)); out["build_seconds"] = time.perf_counter() - t
 out["ratings"] = base.ratings
+out["q_limits"] = base.q_limits
 out["n_branches"] = len(base.branches)
 sets = dict(P1=p1(base.branches), P7=p7(base.branches), N2=n2_sample(base.branches, n=300, seed=0))
 out["seasons"] = {}
