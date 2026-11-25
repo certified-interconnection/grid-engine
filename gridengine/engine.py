@@ -80,9 +80,9 @@ class Engine:
         import os
         self.case = case
         self.q_limits = (os.environ.get("GE_QLIM") == "1") if q_limits is None else bool(q_limits)
-        self.input = _convert(case, q_limits)
+        self.input = _convert(case, self.q_limits)
         self.model = PowerGridModel(self.input)
-        if q_limits and "sym_gen" in self.input:
+        if self.q_limits and "sym_gen" in self.input:
             g_on = case["gen"][case["gen"][:, 7] > 0]
             nodes = self.input["sym_gen"]["node"]
             self.qmax = np.array([g_on[g_on[:, 0] == b, 3].sum() for b in nodes]) * 1e6
