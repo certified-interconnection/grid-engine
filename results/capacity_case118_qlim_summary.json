@@ -1,0 +1,123 @@
+{
+ "gen": {
+  "summer_peak/N0": {
+   "median_mw": 180.0,
+   "share_at_cap": 0.0,
+   "share_zero": 0.0
+  },
+  "summer_peak/P1": {
+   "median_mw": 80.0,
+   "share_at_cap": 0.0,
+   "share_zero": 0.0
+  },
+  "winter_peak/N0": {
+   "median_mw": 190.0,
+   "share_at_cap": 0.0,
+   "share_zero": 0.0
+  },
+  "winter_peak/P1": {
+   "median_mw": 90.0,
+   "share_at_cap": 0.0,
+   "share_zero": 0.0
+  },
+  "light_load/N0": {
+   "median_mw": 180.0,
+   "share_at_cap": 0.0,
+   "share_zero": 0.0
+  },
+  "light_load/P1": {
+   "median_mw": 120.0,
+   "share_at_cap": 0.0,
+   "share_zero": 0.0
+  },
+  "summer_peak/median_loss_N0_to_P1": 0.5527777777777778,
+  "summer_peak/P1_binding_reasons": {
+   "overload": 118
+  },
+  "winter_peak/median_loss_N0_to_P1": 0.49324324324324326,
+  "winter_peak/P1_binding_reasons": {
+   "overload": 118
+  },
+  "light_load/median_loss_N0_to_P1": 0.38095238095238093,
+  "light_load/P1_binding_reasons": {
+   "overload": 118
+  }
+ },
+ "load": {
+  "summer_peak/N0": {
+   "median_mw": 120.0,
+   "share_at_cap": 0.0,
+   "share_zero": 0.025423728813559324
+  },
+  "summer_peak/P1": {
+   "median_mw": 40.0,
+   "share_at_cap": 0.0,
+   "share_zero": 0.05084745762711865
+  },
+  "winter_peak/N0": {
+   "median_mw": 130.0,
+   "share_at_cap": 0.0,
+   "share_zero": 0.01694915254237288
+  },
+  "winter_peak/P1": {
+   "median_mw": 50.0,
+   "share_at_cap": 0.0,
+   "share_zero": 0.025423728813559324
+  },
+  "light_load/N0": {
+   "median_mw": 170.0,
+   "share_at_cap": 0.0,
+   "share_zero": 0.0
+  },
+  "light_load/P1": {
+   "median_mw": 70.0,
+   "share_at_cap": 0.0,
+   "share_zero": 0.0
+  },
+  "summer_peak/median_loss_N0_to_P1": 0.7142857142857143,
+  "summer_peak/P1_binding_reasons": {
+   "overload": 112,
+   "low voltage": 6
+  },
+  "winter_peak/median_loss_N0_to_P1": 0.6666666666666667,
+  "winter_peak/P1_binding_reasons": {
+   "overload": 112,
+   "low voltage": 6
+  },
+  "light_load/median_loss_N0_to_P1": 0.5400641025641026,
+  "light_load/P1_binding_reasons": {
+   "overload": 114,
+   "low voltage": 4
+  }
+ },
+ "clusters": {
+  "P1": {
+   "n": 90,
+   "joint_over_sum_individual_median": 0.49147076323617134,
+   "total_mw": {
+    "requested": 42599.100000000006,
+    "fits_alone_promise": 19581.1,
+    "first_come": 15893.7,
+    "largest_first": 16084.1,
+    "best_subset": 18271.0
+   },
+   "share_best_beats_first_come": 0.4,
+   "share_fits_alone_overpromises": 0.32222222222222224,
+   "mean_checks_best_subset": 35.6
+  },
+  "P1+P7": {
+   "n": 90,
+   "joint_over_sum_individual_median": 0.5181863477827603,
+   "total_mw": {
+    "requested": 42599.100000000006,
+    "fits_alone_promise": 12811.1,
+    "first_come": 11654.1,
+    "largest_first": 12033.6,
+    "best_subset": 14797.9
+   },
+   "share_best_beats_first_come": 0.5111111111111111,
+   "share_fits_alone_overpromises": 0.24444444444444444,
+   "mean_checks_best_subset": 43.666666666666664
+  }
+ }
+}

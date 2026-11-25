@@ -141,7 +141,7 @@ class Engine:
             update["voltage_regulator"] = vr; update["sym_gen"] = sg
             out, failed = self._call(model, update, n, kw)
             q = np.nan_to_num(out["sym_gen"]["q"], nan=0.0)
-            viol = pv & ((q > self.qmax[None, :] + 1e3) | (q < self.qmin[None, :] - 1e3)) & ~failed[:, None]
+            viol = pv & ((q > self.qmax[None, :] + 1.0) | (q < self.qmin[None, :] - 1.0)) & ~failed[:, None]   # 1 var, as MATPOWER (1e-6 Mvar)
             if not viol.any():
                 return out, failed
             qf = np.where(viol, np.where(q > self.qmax[None, :], self.qmax[None, :], self.qmin[None, :]), qf)

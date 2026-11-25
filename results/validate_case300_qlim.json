@@ -1,0 +1,302 @@
+{
+ "case": "case300",
+ "ratings": "synthetic: worst N-1 flow / 0.7 for 411 unrated branches",
+ "q_limits": true,
+ "set_sizes": {
+  "P1": 322,
+  "P7": 1,
+  "N2": 300
+ },
+ "A_pandapower": {
+  "base_max_dv": 0.10712525861007605,
+  "base_max_dangle_deg": 2.255501431424584,
+  "n_outages": 322,
+  "compared": 51,
+  "skipped_parallel": 263,
+  "converged_pgm_only": 6,
+  "converged_pandapower_only": 2,
+  "converged_neither": 0,
+  "max_dv_quantiles": {
+   "0.5": 0.1071239399112982,
+   "0.9": 0.10928659067957378,
+   "0.99": 0.13977999252346757,
+   "1.0": 0.14296551529779766
+  },
+  "max_dangle_deg_quantiles": {
+   "0.5": 2.4703870886208117,
+   "0.9": 13.784088022954341,
+   "0.99": 30.69492481682564,
+   "1.0": 38.58187054796636
+  },
+  "seconds": 5.3634960651397705
+ },
+ "B_dc_vs_ac": {
+  "summer_peak": {
+   "P1": {
+    "n": 322,
+    "ac_secure": 270,
+    "dc_secure": 309,
+    "dc_secure_ac_insecure": 40,
+    "dc_secure_ac_insecure_by_reason": {
+     "thermal": 0,
+     "voltage_only": 22,
+     "diverged": 18
+    },
+    "dc_insecure_ac_secure": 1,
+    "agree": 281,
+    "thermal_only": {
+     "dc_secure_ac_overload": 0,
+     "dc_overload_ac_within": 3
+    },
+    "worst_loading_error_dc_minus_ac": {
+     "0.5": -0.005348859675393225,
+     "0.9": 0.002566377637870497,
+     "0.99": 0.29175261914634004,
+     "1.0": 0.6473039162974356
+    },
+    "worst_loading_abs_error": {
+     "0.5": 0.005353982270632496,
+     "0.9": 0.030039705626748455,
+     "0.99": 0.29175261914634004,
+     "1.0": 0.6473039162974356
+    }
+   },
+   "P7": {
+    "n": 1,
+    "ac_secure": 0,
+    "dc_secure": 1,
+    "dc_secure_ac_insecure": 1,
+    "dc_secure_ac_insecure_by_reason": {
+     "thermal": 0,
+     "voltage_only": 1,
+     "diverged": 0
+    },
+    "dc_insecure_ac_secure": 0,
+    "agree": 0,
+    "thermal_only": {
+     "dc_secure_ac_overload": 0,
+     "dc_overload_ac_within": 0
+    },
+    "worst_loading_error_dc_minus_ac": {
+     "0.5": -0.005350038763718312,
+     "0.9": -0.005350038763718312,
+     "0.99": -0.005350038763718312,
+     "1.0": -0.005350038763718312
+    },
+    "worst_loading_abs_error": {
+     "0.5": 0.005350038763718312,
+     "0.9": 0.005350038763718312,
+     "0.99": 0.005350038763718312,
+     "1.0": 0.005350038763718312
+    }
+   },
+   "N2": {
+    "n": 300,
+    "ac_secure": 204,
+    "dc_secure": 276,
+    "dc_secure_ac_insecure": 74,
+    "dc_secure_ac_insecure_by_reason": {
+     "thermal": 6,
+     "voltage_only": 40,
+     "diverged": 28
+    },
+    "dc_insecure_ac_secure": 2,
+    "agree": 224,
+    "thermal_only": {
+     "dc_secure_ac_overload": 6,
+     "dc_overload_ac_within": 2
+    },
+    "worst_loading_error_dc_minus_ac": {
+     "0.5": -0.005380761595046302,
+     "0.9": 0.008767635991194456,
+     "0.99": 0.20128460854559937,
+     "1.0": 0.6473039162974333
+    },
+    "worst_loading_abs_error": {
+     "0.5": 0.005583888455090613,
+     "0.9": 0.055191304761321835,
+     "0.99": 0.6110954241020514,
+     "1.0": 1292079476.3395374
+    }
+   }
+  },
+  "winter_peak": {
+   "P1": {
+    "n": 322,
+    "ac_secure": 289,
+    "dc_secure": 311,
+    "dc_secure_ac_insecure": 23,
+    "dc_secure_ac_insecure_by_reason": {
+     "thermal": 3,
+     "voltage_only": 13,
+     "diverged": 7
+    },
+    "dc_insecure_ac_secure": 1,
+    "agree": 298,
+    "thermal_only": {
+     "dc_secure_ac_overload": 3,
+     "dc_overload_ac_within": 1
+    },
+    "worst_loading_error_dc_minus_ac": {
+     "0.5": -0.08555102862484398,
+     "0.9": -0.06109761772700654,
+     "0.99": 0.17992794736256693,
+     "1.0": 0.5065630090477475
+    },
+    "worst_loading_abs_error": {
+     "0.5": 0.08555102862484576,
+     "0.9": 0.0855510286248891,
+     "0.99": 0.38243587652150474,
+     "1.0": 0.752541886912361
+    }
+   },
+   "P7": {
+    "n": 1,
+    "ac_secure": 0,
+    "dc_secure": 1,
+    "dc_secure_ac_insecure": 1,
+    "dc_secure_ac_insecure_by_reason": {
+     "thermal": 0,
+     "voltage_only": 1,
+     "diverged": 0
+    },
+    "dc_insecure_ac_secure": 0,
+    "agree": 0,
+    "thermal_only": {
+     "dc_secure_ac_overload": 0,
+     "dc_overload_ac_within": 0
+    },
+    "worst_loading_error_dc_minus_ac": {
+     "0.5": -0.08555102862487085,
+     "0.9": -0.08555102862487085,
+     "0.99": -0.08555102862487085,
+     "1.0": -0.08555102862487085
+    },
+    "worst_loading_abs_error": {
+     "0.5": 0.08555102862487085,
+     "0.9": 0.08555102862487085,
+     "0.99": 0.08555102862487085,
+     "1.0": 0.08555102862487085
+    }
+   },
+   "N2": {
+    "n": 300,
+    "ac_secure": 231,
+    "dc_secure": 276,
+    "dc_secure_ac_insecure": 47,
+    "dc_secure_ac_insecure_by_reason": {
+     "thermal": 4,
+     "voltage_only": 23,
+     "diverged": 20
+    },
+    "dc_insecure_ac_secure": 2,
+    "agree": 251,
+    "thermal_only": {
+     "dc_secure_ac_overload": 4,
+     "dc_overload_ac_within": 2
+    },
+    "worst_loading_error_dc_minus_ac": {
+     "0.5": -0.08555102862484198,
+     "0.9": -0.03571460212646656,
+     "0.99": 0.24657504809974273,
+     "1.0": 0.5140401315957014
+    },
+    "worst_loading_abs_error": {
+     "0.5": 0.08555102862484654,
+     "0.9": 0.08555102862490185,
+     "0.99": 0.9445441964695969,
+     "1.0": 1.3159551975236503
+    }
+   }
+  },
+  "light_load": {
+   "P1": {
+    "n": 322,
+    "ac_secure": 5,
+    "dc_secure": 315,
+    "dc_secure_ac_insecure": 310,
+    "dc_secure_ac_insecure_by_reason": {
+     "thermal": 2,
+     "voltage_only": 308,
+     "diverged": 0
+    },
+    "dc_insecure_ac_secure": 0,
+    "agree": 12,
+    "thermal_only": {
+     "dc_secure_ac_overload": 2,
+     "dc_overload_ac_within": 0
+    },
+    "worst_loading_error_dc_minus_ac": {
+     "0.5": -0.3846513192099679,
+     "0.9": -0.36212945758715154,
+     "0.99": -0.045555337866523375,
+     "1.0": 0.08456671233798474
+    },
+    "worst_loading_abs_error": {
+     "0.5": 0.3846513192099679,
+     "0.9": 0.3858791877418349,
+     "0.99": 713789395.509504,
+     "1.0": 714221493.3778794
+    }
+   },
+   "P7": {
+    "n": 1,
+    "ac_secure": 0,
+    "dc_secure": 1,
+    "dc_secure_ac_insecure": 1,
+    "dc_secure_ac_insecure_by_reason": {
+     "thermal": 0,
+     "voltage_only": 1,
+     "diverged": 0
+    },
+    "dc_insecure_ac_secure": 0,
+    "agree": 0,
+    "thermal_only": {
+     "dc_secure_ac_overload": 0,
+     "dc_overload_ac_within": 0
+    },
+    "worst_loading_error_dc_minus_ac": {
+     "0.5": -0.3846494257824626,
+     "0.9": -0.3846494257824626,
+     "0.99": -0.3846494257824626,
+     "1.0": -0.3846494257824626
+    },
+    "worst_loading_abs_error": {
+     "0.5": 0.3846494257824626,
+     "0.9": 0.3846494257824626,
+     "0.99": 0.3846494257824626,
+     "1.0": 0.3846494257824626
+    }
+   },
+   "N2": {
+    "n": 300,
+    "ac_secure": 6,
+    "dc_secure": 282,
+    "dc_secure_ac_insecure": 276,
+    "dc_secure_ac_insecure_by_reason": {
+     "thermal": 0,
+     "voltage_only": 274,
+     "diverged": 2
+    },
+    "dc_insecure_ac_secure": 0,
+    "agree": 24,
+    "thermal_only": {
+     "dc_secure_ac_overload": 0,
+     "dc_overload_ac_within": 0
+    },
+    "worst_loading_error_dc_minus_ac": {
+     "0.5": -0.38463880479855894,
+     "0.9": -0.3241426526280747,
+     "0.99": 0.08310519511658977,
+     "1.0": 0.08480971359496148
+    },
+    "worst_loading_abs_error": {
+     "0.5": 0.38463880479855894,
+     "0.9": 0.38882933993285246,
+     "0.99": 0.5374233137756288,
+     "1.0": 0.5631678558451263
+    }
+   }
+  }
+ }
+}

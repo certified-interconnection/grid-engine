@@ -1,0 +1,182 @@
+{
+ "case": "case_ACTIVSg500",
+ "ratings": "published",
+ "q_limits": true,
+ "seasons": {
+  "summer_peak": {
+   "base": {
+    "n": 1,
+    "compared": 1,
+    "converged_pgm_only": 0,
+    "converged_pypower_only": 0,
+    "converged_neither": 0,
+    "max_dv": {
+     "0.5": 1.7985612998927536e-14,
+     "0.9": 1.7985612998927536e-14,
+     "0.99": 1.7985612998927536e-14,
+     "1.0": 1.7985612998927536e-14
+    },
+    "max_dangle_deg": null
+   },
+   "P1": {
+    "n": 343,
+    "compared": 343,
+    "converged_pgm_only": 0,
+    "converged_pypower_only": 0,
+    "converged_neither": 0,
+    "max_dv": {
+     "0.5": 2.90878432451791e-14,
+     "0.9": 1.2673417870701096e-12,
+     "0.99": 1.0986578313776345e-11,
+     "1.0": 2.3006485605492344e-11
+    },
+    "max_dangle_deg": null
+   },
+   "P7": {
+    "n": 6,
+    "compared": 4,
+    "converged_pgm_only": 0,
+    "converged_pypower_only": 0,
+    "converged_neither": 2,
+    "max_dv": {
+     "0.5": 7.716050021144838e-14,
+     "0.9": 5.567768468495161e-13,
+     "0.99": 7.288392112059226e-13,
+     "1.0": 7.47957251689968e-13
+    },
+    "max_dangle_deg": null
+   },
+   "N2": {
+    "n": 300,
+    "compared": 300,
+    "converged_pgm_only": 0,
+    "converged_pypower_only": 0,
+    "converged_neither": 0,
+    "max_dv": {
+     "0.5": 3.064215547965432e-14,
+     "0.9": 1.5128676089659648e-12,
+     "0.99": 7.256480971662423e-12,
+     "1.0": 1.049960118848503e-11
+    },
+    "max_dangle_deg": null
+   }
+  },
+  "winter_peak": {
+   "base": {
+    "n": 1,
+    "compared": 1,
+    "converged_pgm_only": 0,
+    "converged_pypower_only": 0,
+    "converged_neither": 0,
+    "max_dv": {
+     "0.5": 6.095124405192109e-13,
+     "0.9": 6.095124405192109e-13,
+     "0.99": 6.095124405192109e-13,
+     "1.0": 6.095124405192109e-13
+    },
+    "max_dangle_deg": null
+   },
+   "P1": {
+    "n": 343,
+    "compared": 343,
+    "converged_pgm_only": 0,
+    "converged_pypower_only": 0,
+    "converged_neither": 0,
+    "max_dv": {
+     "0.5": 5.921929613350585e-13,
+     "0.9": 1.8965717885066627e-12,
+     "0.99": 7.513638600187261e-12,
+     "1.0": 1.5918821816285345e-11
+    },
+    "max_dangle_deg": null
+   },
+   "P7": {
+    "n": 6,
+    "compared": 5,
+    "converged_pgm_only": 0,
+    "converged_pypower_only": 0,
+    "converged_neither": 1,
+    "max_dv": {
+     "0.5": 2.55351295663786e-14,
+     "0.9": 2.4793500585929e-13,
+     "0.99": 3.7391423290955573e-13,
+     "1.0": 3.879119248040297e-13
+    },
+    "max_dangle_deg": null
+   },
+   "N2": {
+    "n": 300,
+    "compared": 300,
+    "converged_pgm_only": 0,
+    "converged_pypower_only": 0,
+    "converged_neither": 0,
+    "max_dv": {
+     "0.5": 3.441691376337985e-14,
+     "0.9": 2.5923263535787558e-12,
+     "0.99": 6.9074057584827965e-12,
+     "1.0": 1.6166401550776754e-11
+    },
+    "max_dangle_deg": null
+   }
+  },
+  "light_load": {
+   "base": {
+    "n": 1,
+    "compared": 1,
+    "converged_pgm_only": 0,
+    "converged_pypower_only": 0,
+    "converged_neither": 0,
+    "max_dv": {
+     "0.5": 3.1308289294429414e-14,
+     "0.9": 3.1308289294429414e-14,
+     "0.99": 3.1308289294429414e-14,
+     "1.0": 3.1308289294429414e-14
+    },
+    "max_dangle_deg": null
+   },
+   "P1": {
+    "n": 343,
+    "compared": 343,
+    "converged_pgm_only": 0,
+    "converged_pypower_only": 0,
+    "converged_neither": 0,
+    "max_dv": {
+     "0.5": 3.197442310920451e-14,
+     "0.9": 4.591882429849648e-14,
+     "0.99": 2.874367410754501e-13,
+     "1.0": 1.2989609388114332e-12
+    },
+    "max_dangle_deg": null
+   },
+   "P7": {
+    "n": 6,
+    "compared": 6,
+    "converged_pgm_only": 0,
+    "converged_pypower_only": 0,
+    "converged_neither": 0,
+    "max_dv": {
+     "0.5": 1.844080443902385e-13,
+     "0.9": 9.610645612667668e-12,
+     "0.99": 1.764651758051628e-11,
+     "1.0": 1.8539392243610564e-11
+    },
+    "max_dangle_deg": null
+   },
+   "N2": {
+    "n": 300,
+    "compared": 300,
+    "converged_pgm_only": 0,
+    "converged_pypower_only": 0,
+    "converged_neither": 0,
+    "max_dv": {
+     "0.5": 3.3306690738754696e-14,
+     "0.9": 6.716849298982205e-14,
+     "0.99": 4.4517944886023767e-13,
+     "1.0": 1.4064305275951483e-12
+    },
+    "max_dangle_deg": null
+   }
+  }
+ },
+ "seconds": 135.5698664188385
+}

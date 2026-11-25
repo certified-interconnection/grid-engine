@@ -1,0 +1,182 @@
+{
+ "case": "case300",
+ "ratings": "synthetic: worst N-1 flow / 0.7 for 411 unrated branches",
+ "q_limits": true,
+ "seasons": {
+  "summer_peak": {
+   "base": {
+    "n": 1,
+    "compared": 1,
+    "converged_pgm_only": 0,
+    "converged_pypower_only": 0,
+    "converged_neither": 0,
+    "max_dv": {
+     "0.5": 4.696243394164412e-14,
+     "0.9": 4.696243394164412e-14,
+     "0.99": 4.696243394164412e-14,
+     "1.0": 4.696243394164412e-14
+    },
+    "max_dangle_deg": null
+   },
+   "P1": {
+    "n": 322,
+    "compared": 294,
+    "converged_pgm_only": 20,
+    "converged_pypower_only": 0,
+    "converged_neither": 8,
+    "max_dv": {
+     "0.5": 4.7406523151494184e-14,
+     "0.9": 9.038325643473396e-14,
+     "0.99": 1.4752438767551271e-06,
+     "1.0": 6.83644971510855e-06
+    },
+    "max_dangle_deg": null
+   },
+   "P7": {
+    "n": 1,
+    "compared": 1,
+    "converged_pgm_only": 0,
+    "converged_pypower_only": 0,
+    "converged_neither": 0,
+    "max_dv": {
+     "0.5": 6.550315845288424e-14,
+     "0.9": 6.550315845288424e-14,
+     "0.99": 6.550315845288424e-14,
+     "1.0": 6.550315845288424e-14
+    },
+    "max_dangle_deg": null
+   },
+   "N2": {
+    "n": 300,
+    "compared": 243,
+    "converged_pgm_only": 1,
+    "converged_pypower_only": 0,
+    "converged_neither": 56,
+    "max_dv": {
+     "0.5": 5.040412531798211e-14,
+     "0.9": 5.821121362714686e-13,
+     "0.99": 6.986953868492949e-07,
+     "1.0": 0.00033667582550478414
+    },
+    "max_dangle_deg": null
+   }
+  },
+  "winter_peak": {
+   "base": {
+    "n": 1,
+    "compared": 1,
+    "converged_pgm_only": 0,
+    "converged_pypower_only": 0,
+    "converged_neither": 0,
+    "max_dv": {
+     "0.5": 8.060219158778636e-14,
+     "0.9": 8.060219158778636e-14,
+     "0.99": 8.060219158778636e-14,
+     "1.0": 8.060219158778636e-14
+    },
+    "max_dangle_deg": null
+   },
+   "P1": {
+    "n": 322,
+    "compared": 303,
+    "converged_pgm_only": 18,
+    "converged_pypower_only": 0,
+    "converged_neither": 1,
+    "max_dv": {
+     "0.5": 8.1601392309949e-14,
+     "0.9": 9.312550730555814e-14,
+     "0.99": 1.7860668499736224e-12,
+     "1.0": 5.455746965310482e-12
+    },
+    "max_dangle_deg": null
+   },
+   "P7": {
+    "n": 1,
+    "compared": 1,
+    "converged_pgm_only": 0,
+    "converged_pypower_only": 0,
+    "converged_neither": 0,
+    "max_dv": {
+     "0.5": 8.282263763703668e-14,
+     "0.9": 8.282263763703668e-14,
+     "0.99": 8.282263763703668e-14,
+     "1.0": 8.282263763703668e-14
+    },
+    "max_dangle_deg": null
+   },
+   "N2": {
+    "n": 300,
+    "compared": 254,
+    "converged_pgm_only": 1,
+    "converged_pypower_only": 0,
+    "converged_neither": 45,
+    "max_dv": {
+     "0.5": 8.1601392309949e-14,
+     "0.9": 1.0288436769201326e-13,
+     "0.99": 4.5349535238159404e-12,
+     "1.0": 8.056555422797373e-12
+    },
+    "max_dangle_deg": null
+   }
+  },
+  "light_load": {
+   "base": {
+    "n": 1,
+    "compared": 1,
+    "converged_pgm_only": 0,
+    "converged_pypower_only": 0,
+    "converged_neither": 0,
+    "max_dv": {
+     "0.5": 7.156497616733759e-13,
+     "0.9": 7.156497616733759e-13,
+     "0.99": 7.156497616733759e-13,
+     "1.0": 7.156497616733759e-13
+    },
+    "max_dangle_deg": null
+   },
+   "P1": {
+    "n": 322,
+    "compared": 317,
+    "converged_pgm_only": 1,
+    "converged_pypower_only": 0,
+    "converged_neither": 4,
+    "max_dv": {
+     "0.5": 7.189804307472514e-13,
+     "0.9": 7.501110843577408e-13,
+     "0.99": 1.8685231140125207e-12,
+     "1.0": 9.203748874142548e-12
+    },
+    "max_dangle_deg": null
+   },
+   "P7": {
+    "n": 1,
+    "compared": 1,
+    "converged_pgm_only": 0,
+    "converged_pypower_only": 0,
+    "converged_neither": 0,
+    "max_dv": {
+     "0.5": 7.200906537718765e-13,
+     "0.9": 7.200906537718765e-13,
+     "0.99": 7.200906537718765e-13,
+     "1.0": 7.200906537718765e-13
+    },
+    "max_dangle_deg": null
+   },
+   "N2": {
+    "n": 300,
+    "compared": 288,
+    "converged_pgm_only": 0,
+    "converged_pypower_only": 0,
+    "converged_neither": 12,
+    "max_dv": {
+     "0.5": 7.187583861423263e-13,
+     "0.9": 7.942979607378221e-13,
+     "0.99": 9.097931297219475e-12,
+     "1.0": 9.560796598861998e-12
+    },
+    "max_dangle_deg": null
+   }
+  }
+ },
+ "seconds": 152.6005082130432
+}
