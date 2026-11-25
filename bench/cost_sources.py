@@ -124,6 +124,12 @@ def miso_rows():
                          "columns: low = Capacitor bank $10,506, central = Static VAr Compensator $101,043, "
                          "high = STATCOM $200,000 (same value in every voltage column)"),
         note="range is over device type, not over projects; bus position to connect the device not included"))
+    rows.append(dict(
+        item="miso_shunt_reactor", unit="$/MVAr", low=14262, central=14262, high=14262, year_dollars=2021,
+        url=MISO_URL,
+        where_in_source=("guide p.27 (docket PDF p.28), table 'Grid supporting devices unit costs', row "
+                         "'Reactor ($/MVAr)', same value in every voltage column"),
+        note="single value in source"))
     return rows
 
 
