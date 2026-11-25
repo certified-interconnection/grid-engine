@@ -68,3 +68,23 @@ def test_texas2000_light_load_base_case_is_secure():
     # regression: with capacitors left in at 55% load the base case ran at 152% loading and 1.15 pu
     r = Engine(apply_season(load_case("case_ACTIVSg2000"), "light_load")).base_case()
     assert r["converged"][0] and r["max_loading"][0] < 1.0 and r["vmax"][0] < 1.1
+
+
+def test_capacity_is_secure_and_tight():
+    from gridengine.capacity import CapacityStudy
+    eng = Engine(load_case("case118")); P1 = p1(eng.branches)
+    r = dict(bus=10, mw=300.0, kind="gen")
+    cs = CapacityStudy(eng, [10])
+    c = cs.capacity([r], P1, tol=0.01)
+    assert 0 < c["mw"] < 300
+    assert cs.secure([r], [c["t"]], P1)[0]
+    assert not cs.secure([r], [min(1.0, c["t"] + 0.02)], P1)[0]
+
+
+def test_best_subset_beats_fixed_orders():
+    from gridengine.capacity import CapacityStudy
+    eng = Engine(load_case("case118")); P1 = p1(eng.branches)
+    req = [dict(bus=10, mw=300, kind="gen"), dict(bus=25, mw=200, kind="load"), dict(bus=26, mw=80, kind="gen")]
+    cs = CapacityStudy(eng, [10, 25, 26])
+    best = cs.best_subset(req, P1)
+    assert best["mw"] >= cs.admit(req, P1)["mw"] and best["mw"] >= cs.admit(req, P1, order=[2, 1, 0])["mw"]
