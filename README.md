@@ -12,6 +12,20 @@ res = winter.contingency_analysis(p1(winter.branches))
 print(res["secure"].sum(), "of", res["n"], "single outages secure")
 ```
 
+## Status (v0.3)
+Steps 1 to 4 of Certified Interconnection live here, each with tests and a generated report:
+
+| Step | What | Where | Headline (95% intervals in the report) |
+|---|---|---|---|
+| 1 | AC engine on Power Grid Model: seasons, P1 / P7 / N2 contingencies, generator reactive limits, DC baseline | `gridengine/engine.py`, `dc.py`, `bench/validate*.py` | 18,935 of 19,041 cases agree with PYPOWER (MATPOWER port) to 1e-10 pu, no convergence disagreements |
+| 2 | Capacity of each bus, project and cluster; exact best cluster decision | `gridengine/capacity.py`, `bench/capacity_study.py` | best cluster decision +15% MW over first come (IEEE 118, single outages); DC cluster pick AC-insecure in 15.6% of clusters |
+| 3 | Ways to make room: flexible load, storage, generation tripping, one switch, partial MW | `gridengine/options.py`, `bench/options_study.py` | every option re-checked in AC; partial MW +4,962 MW, flexible load +2,751 MW over 80 clusters |
+| 4 | Time and cost ranges from public sources only | `gridengine/costs.py`, `data/costs/sources.csv`, `bench/timelines.py` | PJM median 2.8 years from request to operation (1,205 projects) |
+
+- Problem statement, hypotheses and failure criteria: [docs/FORMULATION.md](docs/FORMULATION.md)
+- Every result with intervals, generated from `results/`: [docs/REPORT.md](docs/REPORT.md) (`python bench/report.py`)
+- Step 5 (certify or defer) is kept private for now.
+
 ## What it does
 - **Cases:** MATPOWER files read directly (IEEE 30, 118, 300; synthetic ACTIVSg 200, 500 and 2,000-bus grids).
 - **Power Grid Model input:** every branch as a `generic_branch` (tap ratio, phase shift, rating), PV generators as
@@ -62,8 +76,8 @@ On Texas 2,000 in summer, 320 of 718 common-tower pairs (P7) are insecure, again
 ## Limits
 - Our contingency definitions are not any operator's study files; the input format is plain so a utility's own
   lists can replace them.
-- No generator reactive limits yet (as in Power Grid Model's validation cases), no dynamics.
-- Short circuit is next on the list.
+- Generator reactive limits are optional (`Engine(case, q_limits=True)` or `GE_QLIM=1`); headline numbers are without them and the report gives both. No dynamics yet.
+- Short circuit is implemented but not yet validated against a reference.
 
 ## License
 MIT. Part of Certified Interconnection, led by Sehaj Randhir Singh.
